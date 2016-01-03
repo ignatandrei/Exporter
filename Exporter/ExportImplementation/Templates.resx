@@ -198,6 +198,41 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
 } 
 &lt;/Row&gt;</value>
   </data>
+  <data name="HtmlFile" xml:space="preserve">
+    <value>&lt;html&gt;
+    &lt;head&gt;
+    &lt;title&gt;Export&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    
+&lt;Table border="1"&gt;
+
+@Include(Model.NameOfT+"HtmlHeader")
+
+@foreach(var item in Model.Data){
+  @Include(Model.NameOfT+"HtmlItem",item)
+} 
+
+ &lt;/Table&gt;
+                
+        Generated on $DateCreated;format="yyyy MMM dd"$
+    &lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="HtmlHeader" xml:space="preserve">
+    <value>&lt;tr&gt;
+@foreach(var item in Model){
+   &lt;th&gt;@item&lt;/th&gt;
+} 
+&lt;/tr&gt;</value>
+  </data>
+  <data name="HtmlItem" xml:space="preserve">
+    <value>&lt;tr&gt;
+@foreach(var item in Model){
+   &lt;td&gt;@@Model.@item&lt;/td&gt;
+} 
+&lt;/tr&gt;</value>
+  </data>
   <data name="Word2003File" xml:space="preserve">
     <value>&lt;?xml version="1.0"?&gt;
 &lt;w:wordDocument xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml" &gt;        

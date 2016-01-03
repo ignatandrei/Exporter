@@ -106,6 +106,59 @@ namespace ExportImplementation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;html&gt;
+        ///    &lt;head&gt;
+        ///    &lt;title&gt;Export&lt;/title&gt;
+        ///    &lt;/head&gt;
+        ///    &lt;body&gt;
+        ///    
+        ///&lt;Table border=&quot;1&quot;&gt;
+        ///
+        ///@Include(Model.NameOfT+&quot;HtmlHeader&quot;)
+        ///
+        ///@foreach(var item in Model.Data){
+        ///  @Include(Model.NameOfT+&quot;HtmlItem&quot;,item)
+        ///} 
+        ///
+        /// &lt;/Table&gt;
+        ///                
+        ///        Generated on $DateCreated;format=&quot;yyyy MMM dd&quot;$
+        ///    &lt;/body&gt;
+        ///&lt;/html&gt;.
+        /// </summary>
+        public static string HtmlFile {
+            get {
+                return ResourceManager.GetString("HtmlFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;tr&gt;
+        ///@foreach(var item in Model){
+        ///   &lt;th&gt;@item&lt;/th&gt;
+        ///} 
+        ///&lt;/tr&gt;.
+        /// </summary>
+        public static string HtmlHeader {
+            get {
+                return ResourceManager.GetString("HtmlHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;tr&gt;
+        ///@foreach(var item in Model){
+        ///   &lt;td&gt;@@Model.@item&lt;/td&gt;
+        ///} 
+        ///&lt;/tr&gt;.
+        /// </summary>
+        public static string HtmlItem {
+            get {
+                return ResourceManager.GetString("HtmlItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
         ///&lt;w:wordDocument xmlns:w=&quot;http://schemas.microsoft.com/office/word/2003/wordml&quot; &gt;        
         ///    &lt;w:body&gt;

@@ -18,9 +18,9 @@ namespace ExportImplementation
             ExportCollection = Templates.Excel2003File;
             string template = Templates.Excel2003Header;
             var props = properties.Select(it => it.Name).ToArray();
-            ExportHeader = Engine.Razor.RunCompile(template,TType.Name + "Excel2003HeaderInterpreter",  typeof (string[]),props);
+            ExportHeader = Engine.Razor.RunCompile(template,TType.Name + "Excel2003HeaderInterpreter" + template.GetHashCode(),  typeof (string[]),props);
             template = Templates.Excel2003Item;
-            ExportItem = Engine.Razor.RunCompile(template, TType.Name + "Excel2003ItemInterpreter", typeof(string[]), props);
+            ExportItem = Engine.Razor.RunCompile(template, TType.Name + "Excel2003ItemInterpreter" + template.GetHashCode(), typeof(string[]), props);
 
         }
 
@@ -36,6 +36,7 @@ namespace ExportImplementation
             service.Compile(TType.Name + "Excel2003Header");
             service.Compile(TType.Name + "Excel2003Item",typeof(T));
             var result = service.Run(TType.Name + "Excel2003Collection", typeof(ModelTemplate<T>), modelTemplate);
+            
             return System.Text.Encoding.Unicode.GetBytes(result);
 
 
