@@ -160,9 +160,9 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
 
   @Include(Model.NameOfT+"Excel2003Header")
 
-  $ItemToDisplay.SubNodes.keys:{k |$ItemToDisplay.SubNodes.(k):{y | 
-                    $excel_item(ItemToDisplayRec= y)$ }$}$                    
-  
+@foreach(var item in Model.Data){
+  @Include(Model.NameOfT+"Excel2003Item",item)
+} 
  &lt;/Table&gt;
  &lt;WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel"&gt;
   &lt;Print&gt;
@@ -188,6 +188,13 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
     <value>&lt;Row&gt;
 @foreach(var item in Model){
    &lt;Cell&gt;&lt;Data ss:Type='String'&gt;@item&lt;/Data&gt;&lt;/Cell&gt;
+} 
+&lt;/Row&gt;</value>
+  </data>
+  <data name="Excel2003Item" xml:space="preserve">
+    <value>&lt;Row&gt;
+@foreach(var item in Model){
+   &lt;Cell&gt;&lt;Data ss:Type='String'&gt;@@Model.@item&lt;/Data&gt;&lt;/Cell&gt;
 } 
 &lt;/Row&gt;</value>
   </data>

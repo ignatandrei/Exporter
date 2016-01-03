@@ -31,8 +31,12 @@ namespace ExportImplementation
         public ExportExcel()
         {
             this.ExportCollection = Templates.Excel2003File;
-            string templateHeader = Templates.Excel2003Header;
-            ExportHeader = Engine.Razor.RunCompile(templateHeader,TType.Name + "Excel2003prop",  typeof (string[]),properties.Select(it => it.Name).ToArray());
+            string template = Templates.Excel2003Header;
+            var props = properties.Select(it => it.Name).ToArray();
+            ExportHeader = Engine.Razor.RunCompile(template,TType.Name + "Excel2003HeaderInterpreter",  typeof (string[]),props);
+            template = Templates.Excel2003Item;
+            ExportItem = Engine.Razor.RunCompile(template, TType.Name + "Excel2003ItemInterpreter", typeof(string[]), props);
+
         }
 
         public override byte[] ExportResult(List<T> data, params KeyValuePair<string, object>[] additionalData)
@@ -42,12 +46,15 @@ namespace ExportImplementation
             var service = Engine.Razor;
             service.AddTemplate(TType.Name + "Excel2003Collection",ExportCollection);
             service.AddTemplate(TType.Name + "Excel2003Header", ExportHeader);
+            service.AddTemplate(TType.Name + "Excel2003Item", ExportItem);
             service.Compile(TType.Name + "Excel2003Collection",typeof(ModelTemplate<T>));
             service.Compile(TType.Name + "Excel2003Header");
+            service.Compile(TType.Name + "Excel2003Item",typeof(T));
             var result = service.Run(TType.Name + "Excel2003Collection", typeof(ModelTemplate<T>), modelTemplate);
             return System.Text.Encoding.Unicode.GetBytes(result);
 
 
         }
+
     }
 }

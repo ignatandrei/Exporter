@@ -91,5 +91,18 @@ namespace ExportImplementation {
                 return ResourceManager.GetString("Excel2003Header", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Row&gt;
+        ///@foreach(var item in Model){
+        ///   &lt;Cell&gt;&lt;Data ss:Type=&apos;String&apos;&gt;@@Model.@item&lt;/Data&gt;&lt;/Cell&gt;
+        ///} 
+        ///&lt;/Row&gt;.
+        /// </summary>
+        public static string Excel2003Item {
+            get {
+                return ResourceManager.GetString("Excel2003Item", resourceCulture);
+            }
+        }
     }
 }
