@@ -34,8 +34,8 @@ var p = new Person { Name = "andrei", WebSite = "http://msprogrammer.serviciipew
             data = export.ExportResult(new List<Person>() { p });
             File.WriteAllBytes("a.pdf", data);
             Process.Start("a.pdf");
+//using factory
 
-//or you can use the factory
             data = ExportFactory.ExportData(new List<Person>() {p}, ExportToFormat.Excel2007);
             File.WriteAllBytes("b.xlsx", data);
             Process.Start("b.xlsx");
