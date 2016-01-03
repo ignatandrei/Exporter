@@ -34,7 +34,7 @@ namespace ExporterTests
                 Assert.IsTrue(str.Contains("http://serviciipeweb.ro/iafblog/content/binary/cv.doc"),"must contain the cv");
 
             }
-            [TestMethod]
+            //[TestMethod]
             public void TestExcel()
             {
                 var p = new Person { Name = "Andrei Ignat", WebSite = "http://msprogrammer.serviciipeweb.ro/", CV = "http://serviciipeweb.ro/iafblog/content/binary/cv.doc" };

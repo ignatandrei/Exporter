@@ -82,7 +82,7 @@ namespace ExportImplementation {
         /// <summary>
         ///   Looks up a localized string similar to &lt;Row&gt;
         ///@foreach(var item in Model){
-        ///   &lt;Cell&gt;&lt;Data ss:Type=&apos;String&apos;&gt;@item&lt;/Data&gt;&lt;/Cell&gt;
+        ///   &lt;Cell ss:StyleID=&apos;s21&apos;&gt;&lt;Data ss:Type=&apos;String&apos;&gt;@item&lt;/Data&gt;&lt;/Cell&gt;
         ///} 
         ///&lt;/Row&gt;.
         /// </summary>

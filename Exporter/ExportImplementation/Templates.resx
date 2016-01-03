@@ -187,7 +187,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
   <data name="Excel2003Header" xml:space="preserve">
     <value>&lt;Row&gt;
 @foreach(var item in Model){
-   &lt;Cell&gt;&lt;Data ss:Type='String'&gt;@item&lt;/Data&gt;&lt;/Cell&gt;
+   &lt;Cell ss:StyleID='s21'&gt;&lt;Data ss:Type='String'&gt;@item&lt;/Data&gt;&lt;/Cell&gt;
 } 
 &lt;/Row&gt;</value>
   </data>
