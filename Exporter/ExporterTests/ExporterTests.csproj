@@ -50,6 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Word2003TestExport.cs" />
+    <Compile Include="Word2003TestConstructor.cs" />
     <Compile Include="Excel2003TestExport.cs" />
     <Compile Include="Excel2003TestConstructor.cs" />
     <Compile Include="Person.cs" />

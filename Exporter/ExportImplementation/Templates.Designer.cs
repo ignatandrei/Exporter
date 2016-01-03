@@ -104,5 +104,71 @@ namespace ExportImplementation {
                 return ResourceManager.GetString("Excel2003Item", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
+        ///&lt;w:wordDocument xmlns:w=&quot;http://schemas.microsoft.com/office/word/2003/wordml&quot; &gt;        
+        ///    &lt;w:body&gt;
+        ///        &lt;w:tbl&gt;
+        ///    
+        ///@Include(Model.NameOfT+&quot;Word2003Header&quot;)
+        ///
+        ///@foreach(var item in Model.Data){
+        ///  @Include(Model.NameOfT+&quot;Word2003Item&quot;,item)
+        ///} 
+        ///
+        ///        &lt;/w:tbl&gt;
+        ///    &lt;/w:body&gt;
+        ///    
+        ///&lt;/w:wordDocument&gt;.
+        /// </summary>
+        public static string Word2003File {
+            get {
+                return ResourceManager.GetString("Word2003File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;w:tr&gt;
+        ///@foreach(var item in Model){
+        ///           &lt;w:tc&gt;
+        ///                &lt;w:p&gt;
+        ///                    &lt;w:r&gt;
+        ///                        &lt;w:rPr&gt;
+        ///                            &lt;w:b w:val=&apos;on&apos;/&gt;
+        ///                            &lt;w:t&gt;
+        ///                                @item
+        ///                            &lt;/w:t&gt;
+        ///                        &lt;/w:rPr&gt;
+        ///                    &lt;/w:r&gt;
+        ///                &lt;/w:p&gt;
+        ///            &lt;/w:tc&gt;                
+        ///}
+        ///&lt;/w:tr&gt;.
+        /// </summary>
+        public static string Word2003Header {
+            get {
+                return ResourceManager.GetString("Word2003Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;w:tr&gt;
+        ///@foreach(var item in Model){
+        ///   &lt;w:tc&gt;
+        ///    &lt;w:p&gt;
+        ///        &lt;w:r&gt;
+        ///            &lt;w:t&gt;@@Model.@item&lt;/w:t&gt;
+        ///        &lt;/w:r&gt;
+        ///    &lt;/w:p&gt;
+        ///    &lt;/w:tc&gt;
+        ///   }
+        ///&lt;/w:tr&gt;.
+        /// </summary>
+        public static string Word2003Item {
+            get {
+                return ResourceManager.GetString("Word2003Item", resourceCulture);
+            }
+        }
     }
 }

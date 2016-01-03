@@ -158,7 +158,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
   x:FullRows="1"&gt;
 
 
-  @Include(Model.NameOfT+"Excel2003Header")
+@Include(Model.NameOfT+"Excel2003Header")
 
 @foreach(var item in Model.Data){
   @Include(Model.NameOfT+"Excel2003Item",item)
@@ -197,5 +197,53 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
    &lt;Cell&gt;&lt;Data ss:Type='String'&gt;@@Model.@item&lt;/Data&gt;&lt;/Cell&gt;
 } 
 &lt;/Row&gt;</value>
+  </data>
+  <data name="Word2003File" xml:space="preserve">
+    <value>&lt;?xml version="1.0"?&gt;
+&lt;w:wordDocument xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml" &gt;        
+    &lt;w:body&gt;
+        &lt;w:tbl&gt;
+    
+@Include(Model.NameOfT+"Word2003Header")
+
+@foreach(var item in Model.Data){
+  @Include(Model.NameOfT+"Word2003Item",item)
+} 
+
+        &lt;/w:tbl&gt;
+    &lt;/w:body&gt;
+    
+&lt;/w:wordDocument&gt;</value>
+  </data>
+  <data name="Word2003Header" xml:space="preserve">
+    <value>&lt;w:tr&gt;
+@foreach(var item in Model){
+           &lt;w:tc&gt;
+                &lt;w:p&gt;
+                    &lt;w:r&gt;
+                        &lt;w:rPr&gt;
+                            &lt;w:b w:val='on'/&gt;
+                            &lt;w:t&gt;
+                                @item
+                            &lt;/w:t&gt;
+                        &lt;/w:rPr&gt;
+                    &lt;/w:r&gt;
+                &lt;/w:p&gt;
+            &lt;/w:tc&gt;                
+}
+&lt;/w:tr&gt;</value>
+  </data>
+  <data name="Word2003Item" xml:space="preserve">
+    <value>&lt;w:tr&gt;
+@foreach(var item in Model){
+   &lt;w:tc&gt;
+    &lt;w:p&gt;
+        &lt;w:r&gt;
+            &lt;w:t&gt;@@Model.@item&lt;/w:t&gt;
+        &lt;/w:r&gt;
+    &lt;/w:p&gt;
+    &lt;/w:tc&gt;
+   }
+&lt;/w:tr&gt;</value>
   </data>
 </root>

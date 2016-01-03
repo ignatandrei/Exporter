@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExportWord.cs" />
     <Compile Include="ExportExcel.cs" />
+    <Compile Include="ModelTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Text;
@@ -11,26 +10,12 @@ using RazorEngine.Templating;
 
 namespace ExportImplementation
 {
-    public class ModelTemplate<T>
-    {
-        protected Type TType;
-        public ModelTemplate(List<T> data )
-        {
-            TType = typeof(T);
-            NameOfT = TType.Name;
-            Data = data;
-        } 
-        public string NameOfT { get; set; }
-        public List<T> Data { get; set; }
-
-
-    }
-    public class ExportExcel<T> : Export<T>
+    public class ExportExcel2003<T> : Export<T>
         where T : class
     {
-        public ExportExcel()
+        public ExportExcel2003()
         {
-            this.ExportCollection = Templates.Excel2003File;
+            ExportCollection = Templates.Excel2003File;
             string template = Templates.Excel2003Header;
             var props = properties.Select(it => it.Name).ToArray();
             ExportHeader = Engine.Razor.RunCompile(template,TType.Name + "Excel2003HeaderInterpreter",  typeof (string[]),props);
