@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Excel2003File" xml:space="preserve">
+    <value>&lt;?xml version="1.0"?&gt;
+&lt;?mso-application progid="Excel.Sheet"?&gt;
+&lt;Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
+&lt;DocumentProperties xmlns="urn:schemas-microsoft-com:office:office"&gt;
+ &lt;Author&gt;Andrei Ignat&lt;/Author&gt;
+ &lt;LastAuthor&gt;Andrei Ignat&lt;/LastAuthor&gt;
+ &lt;Created&gt;$DateCreated;format="yyyy-MM-ddTHH:mm:ssZ"$&lt;/Created&gt;
+ &lt;Company&gt;AOM&lt;/Company&gt;
+ &lt;Version&gt;11.9999&lt;/Version&gt;
+&lt;/DocumentProperties&gt;
+&lt;ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel"&gt;
+ &lt;WindowHeight&gt;11760&lt;/WindowHeight&gt;
+ &lt;WindowWidth&gt;15195&lt;/WindowWidth&gt;
+ &lt;WindowTopX&gt;480&lt;/WindowTopX&gt;
+ &lt;WindowTopY&gt;90&lt;/WindowTopY&gt;
+ &lt;ProtectStructure&gt;False&lt;/ProtectStructure&gt;
+ &lt;ProtectWindows&gt;False&lt;/ProtectWindows&gt;
+&lt;/ExcelWorkbook&gt;
+&lt;Styles&gt;
+ &lt;Style ss:ID="Default" ss:Name="Normal"&gt;
+  &lt;Alignment ss:Vertical="Bottom"/&gt;
+  &lt;Borders/&gt;
+  &lt;Font/&gt;
+  &lt;Interior/&gt;
+  &lt;NumberFormat/&gt;
+  &lt;Protection/&gt;
+ &lt;/Style&gt;
+ &lt;Style ss:ID="s21"&gt;
+  &lt;Font x:Family="Swiss" ss:Bold="1"/&gt;
+ &lt;/Style&gt;
+&lt;/Styles&gt;
+&lt;Worksheet ss:Name="Sheet1"&gt;
+ &lt;Table  x:FullColumns="1"
+  x:FullRows="1"&gt;
+
+
+  @Include(Model.NameOfT+"Excel2003Header")
+
+  $ItemToDisplay.SubNodes.keys:{k |$ItemToDisplay.SubNodes.(k):{y | 
+                    $excel_item(ItemToDisplayRec= y)$ }$}$                    
+  
+ &lt;/Table&gt;
+ &lt;WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel"&gt;
+  &lt;Print&gt;
+   &lt;ValidPrinterInfo/&gt;
+   &lt;PaperSizeIndex&gt;9&lt;/PaperSizeIndex&gt;
+   &lt;HorizontalResolution&gt;600&lt;/HorizontalResolution&gt;
+   &lt;VerticalResolution&gt;600&lt;/VerticalResolution&gt;
+  &lt;/Print&gt;
+  &lt;Selected/&gt;
+  &lt;Panes&gt;
+   &lt;Pane&gt;
+    &lt;Number&gt;3&lt;/Number&gt;
+    &lt;RangeSelection&gt;R1C1:R1C1&lt;/RangeSelection&gt;
+   &lt;/Pane&gt;
+  &lt;/Panes&gt;
+  &lt;ProtectObjects&gt;False&lt;/ProtectObjects&gt;
+  &lt;ProtectScenarios&gt;False&lt;/ProtectScenarios&gt;
+ &lt;/WorksheetOptions&gt;
+&lt;/Worksheet&gt;
+&lt;/Workbook&gt;</value>
+  </data>
+  <data name="Excel2003Header" xml:space="preserve">
+    <value>&lt;Row&gt;
+@foreach(var item in Model){
+   &lt;Cell&gt;&lt;Data ss:Type='String'&gt;@item&lt;/Data&gt;&lt;/Cell&gt;
+} 
+&lt;/Row&gt;</value>
+  </data>
+</root>
