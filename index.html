@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Exporter by ignatandrei</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Exporter</h1>
+        <p>Export to Excel,Word , Pdf, Html,CSV</p>
+
+        <p class="view"><a href="https://github.com/ignatandrei/Exporter">View the Project on GitHub <small>ignatandrei/Exporter</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/ignatandrei/Exporter/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ignatandrei/Exporter/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ignatandrei/Exporter">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="exporter" class="anchor" href="#exporter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exporter</h1>
+
+<p>Export to Excel,Word , Pdf, Html,CSV</p>
+
+<p><a href="https://ci.appveyor.com/project/ignatandrei/exporter/branch/master"><img src="https://ci.appveyor.com/api/projects/status/w4w6k0kxu2cide0m/branch/master?svg=true" alt="Build status"></a></p>
+
+<p>Usage:</p>
+
+<p>var p = new Person { Name = "andrei", WebSite = "<a href="http://msprogrammer.serviciipeweb.ro/">http://msprogrammer.serviciipeweb.ro/</a>" , CV = "<a href="http://serviciipeweb.ro/iafblog/content/binary/cv.doc">http://serviciipeweb.ro/iafblog/content/binary/cv.doc</a>" };</p>
+
+<pre><code>        Export&lt;Person&gt; export = new ExportHtml&lt;Person&gt;();
+        var data = export.ExportResult(new List&lt;Person&gt;() { p });            
+        File.WriteAllBytes("a.html",data);
+        Process.Start("a.html");
+
+        export=new ExportExcel2007&lt;Person&gt;();
+        data = export.ExportResult(new List&lt;Person&gt;() { p });
+        File.WriteAllBytes("a.xlsx", data);
+        Process.Start("a.xlsx");
+
+
+        export = new ExportWord2007&lt;Person&gt;();
+        data = export.ExportResult(new List&lt;Person&gt;() { p });
+        File.WriteAllBytes("a.docx", data);
+        Process.Start("a.docx");
+
+
+        export = new ExportPdfiTextSharp4&lt;Person&gt;();
+        data = export.ExportResult(new List&lt;Person&gt;() { p });
+        File.WriteAllBytes("a.pdf", data);
+        Process.Start("a.pdf");
+</code></pre>
+
+<p>//using factory</p>
+
+<pre><code>        data = ExportFactory.ExportData(new List&lt;Person&gt;() {p}, ExportToFormat.Excel2007);
+        File.WriteAllBytes("b.xlsx", data);
+        Process.Start("b.xlsx");
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/ignatandrei">ignatandrei</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-59447506-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
