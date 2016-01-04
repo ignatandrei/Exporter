@@ -214,6 +214,60 @@ namespace ExportImplementation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;itext author=&quot;Andrei Ignat&quot; title=&quot;Collection&quot;&gt;
+        ///
+        ///&lt;chapter numberdepth=&quot;0&quot;&gt;
+        ///&lt;newline /&gt;
+        ///&lt;section numberdepth=&quot;0&quot;&gt;
+        ///&lt;table width=&quot;100%&quot;  cellspacing=&quot;0&quot; cellpadding=&quot;2&quot; columns=&quot;$ItemToDisplay.Properties.keys.Count$&quot; grayfill=&quot;0.90&quot;&gt;
+        ///
+        ///@Include(Model.NameOfT+&quot;iTextSharp4Header&quot;)
+        ///
+        ///@foreach(var item in Model.Data){
+        ///  @Include(Model.NameOfT+&quot;iTextSharp4Item&quot;,item)
+        ///}     
+        ///&lt;/table&gt;
+        ///&lt;/section&gt;
+        ///
+        ///&lt;/chapter&gt;
+        ///
+        ///
+        ///
+        ///&lt;/itext&gt;.
+        /// </summary>
+        public static string iTextSharp4File {
+            get {
+                return ResourceManager.GetString("iTextSharp4File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;row&gt;
+        ///@foreach(var item in Model){
+        ///&lt;cell&gt;&lt;phrase font=&apos;Arial&apos; size=&apos;12&apos; style=&apos;bold&apos;&gt;@item&lt;/phrase&gt;&lt;/cell&gt;
+        ///}
+        ///&lt;/row&gt;.
+        /// </summary>
+        public static string iTextSharp4Header {
+            get {
+                return ResourceManager.GetString("iTextSharp4Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;row&gt;
+        ///@foreach(var item in Model){
+        ///    &lt;cell&gt;&lt;phrase font=&apos;Times New Roman&apos; size=&apos;8&apos;&gt;@@Model.@item&lt;/phrase&gt;&lt;/cell&gt;
+        ///}
+        ///&lt;/row&gt;.
+        /// </summary>
+        public static string iTextSharp4Item {
+            get {
+                return ResourceManager.GetString("iTextSharp4Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
         ///&lt;w:wordDocument xmlns:w=&quot;http://schemas.microsoft.com/office/word/2003/wordml&quot; &gt;        
         ///    &lt;w:body&gt;

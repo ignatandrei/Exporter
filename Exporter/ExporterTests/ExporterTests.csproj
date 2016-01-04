@@ -50,6 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="iTextSharp4TestConstructor.cs" />
+    <Compile Include="iTextSharp4TestExport.cs" />
     <Compile Include="HtmlTestConstructor.cs" />
     <Compile Include="HtmlTestExport.cs" />
     <Compile Include="Excel2007TestConstructor.cs" />

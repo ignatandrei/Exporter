@@ -270,6 +270,42 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
 } 
 &lt;/tr&gt;</value>
   </data>
+  <data name="iTextSharp4File" xml:space="preserve">
+    <value>&lt;itext author="Andrei Ignat" title="Collection"&gt;
+
+&lt;chapter numberdepth="0"&gt;
+&lt;newline /&gt;
+&lt;section numberdepth="0"&gt;
+&lt;table width="100%"  cellspacing="0" cellpadding="2" columns="$ItemToDisplay.Properties.keys.Count$" grayfill="0.90"&gt;
+
+@Include(Model.NameOfT+"iTextSharp4Header")
+
+@foreach(var item in Model.Data){
+  @Include(Model.NameOfT+"iTextSharp4Item",item)
+}     
+&lt;/table&gt;
+&lt;/section&gt;
+
+&lt;/chapter&gt;
+
+
+
+&lt;/itext&gt;</value>
+  </data>
+  <data name="iTextSharp4Header" xml:space="preserve">
+    <value>&lt;row&gt;
+@foreach(var item in Model){
+&lt;cell&gt;&lt;phrase font='Arial' size='12' style='bold'&gt;@item&lt;/phrase&gt;&lt;/cell&gt;
+}
+&lt;/row&gt;</value>
+  </data>
+  <data name="iTextSharp4Item" xml:space="preserve">
+    <value>&lt;row&gt;
+@foreach(var item in Model){
+    &lt;cell&gt;&lt;phrase font='Times New Roman' size='8'&gt;@@Model.@item&lt;/phrase&gt;&lt;/cell&gt;
+}
+&lt;/row&gt;</value>
+  </data>
   <data name="Word2003File" xml:space="preserve">
     <value>&lt;?xml version="1.0"?&gt;
 &lt;w:wordDocument xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml" &gt;        
