@@ -15,24 +15,24 @@ namespace ExporterTests
             public void TestConstructorHeaderWithPerson()
             {
                 var t = new Person {Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/"};
-                var excel = new ExportHtml<Person>();
+                var export = new ExportHtml<Person>();
                 Assert.AreEqual(@"<tr>
    <th>Name</th>
    <th>WebSite</th>
    <th>CV</th>
-</tr>", excel.ExportHeader);
+</tr>", export.ExportHeader);
             }
 
             [TestMethod]
             public void TestConstructorItemWithPerson()
             {
                 var t = new Person {Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/"};
-                var excel = new ExportHtml<Person>();
+                var export = new ExportHtml<Person>();
                 Assert.AreEqual(@"<tr>
    <td>@Model.Name</td>
    <td>@Model.WebSite</td>
    <td>@Model.CV</td>
-</tr>", excel.ExportItem);
+</tr>", export.ExportItem);
             }
         }
     }

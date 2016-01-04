@@ -15,24 +15,24 @@ namespace ExporterTests
             public void TestConstructorHeaderWithPerson()
             {
                 var t = new Person {Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/"};
-                var excel = new ExportPdfiTextSharp4<Person>();
+                var export = new ExportPdfiTextSharp4<Person>();
                 Assert.AreEqual(@"<row>
 <cell><phrase font='Arial' size='12' style='bold'>Name</phrase></cell>
 <cell><phrase font='Arial' size='12' style='bold'>WebSite</phrase></cell>
 <cell><phrase font='Arial' size='12' style='bold'>CV</phrase></cell>
-</row>", excel.ExportHeader);
+</row>", export.ExportHeader);
             }
 
             [TestMethod]
             public void TestConstructorItemWithPerson()
             {
                 var t = new Person {Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/"};
-                var excel = new ExportPdfiTextSharp4<Person>();
+                var export = new ExportPdfiTextSharp4<Person>();
                 Assert.AreEqual(@"<row>
     <cell><phrase font='Times New Roman' size='8'>@Model.Name</phrase></cell>
     <cell><phrase font='Times New Roman' size='8'>@Model.WebSite</phrase></cell>
     <cell><phrase font='Times New Roman' size='8'>@Model.CV</phrase></cell>
-</row>", excel.ExportItem);
+</row>", export.ExportItem);
             }
         }
     }

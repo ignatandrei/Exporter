@@ -15,7 +15,7 @@ namespace ExporterTests
             public void TestConstructorHeaderWithPerson()
             {
                 var t = new Person {Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/"};
-                var excel = new ExportExcel2007<Person>();
+                var export = new ExportExcel2007<Person>();
                 Assert.AreEqual(@"<row>
    <c t='inlineStr'>
                 <is>
@@ -32,14 +32,14 @@ namespace ExporterTests
                     <t>CV</t>
                 </is>
             </c>
-</row>", excel.ExportHeader);
+</row>", export.ExportHeader);
             }
 
             [TestMethod]
             public void TestConstructorItemWithPerson()
             {
                 var t = new Person {Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/"};
-                var excel = new ExportExcel2007<Person>();
+                var export = new ExportExcel2007<Person>();
                 Assert.AreEqual(@"<row>
    <c t='inlineStr'>
                 <is>
@@ -59,7 +59,7 @@ namespace ExporterTests
                     </t>
                 </is>
     </c>
-</row>", excel.ExportItem);
+</row>", export.ExportItem);
             }
         }
     }

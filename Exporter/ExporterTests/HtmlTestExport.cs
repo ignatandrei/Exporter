@@ -19,17 +19,17 @@ namespace ExporterTests
             public void TestWithPersonHeader()
             {
                 var p = new Person {Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/"};
-                var excel = new ExportHtml<Person>();
-                var data = excel.ExportResult(new List<Person>() {p});
+                var export = new ExportHtml<Person>();
+                var data = export.ExportResult(new List<Person>() {p});
                 var str = Encoding.Unicode.GetString(data);
-                Assert.IsTrue(str.Contains(excel.ExportHeader),"must contain the header");
+                Assert.IsTrue(str.Contains(export.ExportHeader),"must contain the header");
             }
             [TestMethod]
             public void TestWithPersonData()
             {
                 var p = new Person { Name = "Andrei Ignat", WebSite = "http://msprogrammer.serviciipeweb.ro/", CV = "http://serviciipeweb.ro/iafblog/content/binary/cv.doc" };
-                var excel = new ExportHtml<Person>();
-                var data = excel.ExportResult(new List<Person>() { p});
+                var export = new ExportHtml<Person>();
+                var data = export.ExportResult(new List<Person>() { p});
                 var str = Encoding.Unicode.GetString(data);
                 Assert.IsTrue(str.Contains("http://serviciipeweb.ro/iafblog/content/binary/cv.doc"),"must contain the cv");
 
@@ -38,8 +38,8 @@ namespace ExporterTests
             public void TestHtml()
             {
                 var p = new Person { Name = "Andrei Ignat", WebSite = "http://msprogrammer.serviciipeweb.ro/", CV = "http://serviciipeweb.ro/iafblog/content/binary/cv.doc" };
-                var excel = new ExportHtml<Person>();
-                var data = excel.ExportResult(new List<Person>() { p });
+                var export = new ExportHtml<Person>();
+                var data = export.ExportResult(new List<Person>() { p });
                 var str = Encoding.Unicode.GetString(data);
                 File.WriteAllText("a.html",str);
                 Process.Start("a.html");
