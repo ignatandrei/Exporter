@@ -37,4 +37,4 @@ var p = new Person { Name = "andrei", WebSite = "http://msprogrammer.serviciipew
             
             
             
-More details at http://ignatandrei.github.io/Exporter/
+More details at https://github.com/ignatandrei/Exporter/wiki
