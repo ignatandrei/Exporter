@@ -106,6 +106,61 @@ namespace ExportImplementation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos; standalone=&apos;yes&apos; ?&gt;
+        ///&lt;worksheet xmlns=&apos;http://schemas.openxmlformats.org/spreadsheetml/2006/main&apos; xmlns:r=&apos;http://schemas.openxmlformats.org/officeDocument/2006/relationships&apos;&gt;
+        ///    &lt;sheetData&gt;
+        ///
+        ///@Include(Model.NameOfT+&quot;Excel2007Header&quot;)
+        ///
+        ///@foreach(var item in Model.Data){
+        ///  @Include(Model.NameOfT+&quot;Excel2007Item&quot;,item)
+        ///} 
+        ///
+        ///    &lt;/sheetData&gt;
+        ///&lt;/worksheet&gt;.
+        /// </summary>
+        public static string Excel2007File {
+            get {
+                return ResourceManager.GetString("Excel2007File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;row&gt;
+        ///@foreach(var item in Model){
+        ///   &lt;c t=&apos;inlineStr&apos;&gt;
+        ///                &lt;is&gt;
+        ///                    &lt;t&gt;@item&lt;/t&gt;
+        ///                &lt;/is&gt;
+        ///            &lt;/c&gt;
+        ///} 
+        ///&lt;/row&gt;.
+        /// </summary>
+        public static string Excel2007Header {
+            get {
+                return ResourceManager.GetString("Excel2007Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;row&gt;
+        ///@foreach(var item in Model){
+        ///   &lt;c t=&apos;inlineStr&apos;&gt;
+        ///                &lt;is&gt;
+        ///                    &lt;t&gt;@@Model.@item
+        ///                    &lt;/t&gt;
+        ///                &lt;/is&gt;
+        ///    &lt;/c&gt;
+        ///   }
+        ///&lt;/row&gt;.
+        /// </summary>
+        public static string Excel2007Item {
+            get {
+                return ResourceManager.GetString("Excel2007Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;html&gt;
         ///    &lt;head&gt;
         ///    &lt;title&gt;Export&lt;/title&gt;
@@ -122,7 +177,7 @@ namespace ExportImplementation {
         ///
         /// &lt;/Table&gt;
         ///                
-        ///        Generated on $DateCreated;format=&quot;yyyy MMM dd&quot;$
+        ///         &lt;!--Generated on $DateCreated;format=&quot;yyyy MMM dd&quot;$--&gt;
         ///    &lt;/body&gt;
         ///&lt;/html&gt;.
         /// </summary>
@@ -221,6 +276,70 @@ namespace ExportImplementation {
         public static string Word2003Item {
             get {
                 return ResourceManager.GetString("Word2003Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+        ///&lt;w:document xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;&gt;
+        ///    &lt;w:body&gt;
+        ///        &lt;w:tbl&gt;
+        ///
+        ///@Include(Model.NameOfT+&quot;Word2007Header&quot;)
+        ///
+        ///@foreach(var item in Model.Data){
+        ///  @Include(Model.NameOfT+&quot;Word2007Item&quot;,item)
+        ///} 
+        ///        &lt;/w:tbl&gt;
+        ///    &lt;/w:body&gt;
+        ///&lt;/w:document&gt;.
+        /// </summary>
+        public static string Word2007File {
+            get {
+                return ResourceManager.GetString("Word2007File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;w:tr&gt;
+        ///@foreach(var item in Model){
+        ///                &lt;w:tc&gt;
+        ///                    &lt;w:p&gt;
+        ///                        &lt;w:r&gt;
+        ///                            &lt;w:rPr&gt;
+        ///                                &lt;w:b w:val=&apos;on&apos;/&gt;
+        ///                                &lt;w:t&gt;
+        ///                                      @item
+        ///                                &lt;/w:t&gt;
+        ///                            &lt;/w:rPr&gt;
+        ///                        &lt;/w:r&gt;
+        ///                    &lt;/w:p&gt;
+        ///                &lt;/w:tc&gt;
+        ///}
+        ///            &lt;/w:tr&gt;.
+        /// </summary>
+        public static string Word2007Header {
+            get {
+                return ResourceManager.GetString("Word2007Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;w:tr&gt;
+        ///@foreach(var item in Model){
+        ///   &lt;w:tc&gt;
+        ///    &lt;w:p&gt;
+        ///        &lt;w:r&gt;
+        ///              &lt;w:t&gt;@@Model.@item&lt;/w:t&gt;
+        ///        &lt;/w:r&gt;
+        ///    &lt;/w:p&gt;
+        ///    &lt;/w:tc&gt;
+        ///   }
+        ///&lt;/w:tr&gt;.
+        /// </summary>
+        public static string Word2007Item {
+            get {
+                return ResourceManager.GetString("Word2007Item", resourceCulture);
             }
         }
     }

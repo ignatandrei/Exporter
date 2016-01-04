@@ -198,6 +198,43 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
 } 
 &lt;/Row&gt;</value>
   </data>
+  <data name="Excel2007File" xml:space="preserve">
+    <value>&lt;?xml version='1.0' encoding='UTF-8' standalone='yes' ?&gt;
+&lt;worksheet xmlns='http://schemas.openxmlformats.org/spreadsheetml/2006/main' xmlns:r='http://schemas.openxmlformats.org/officeDocument/2006/relationships'&gt;
+    &lt;sheetData&gt;
+
+@Include(Model.NameOfT+"Excel2007Header")
+
+@foreach(var item in Model.Data){
+  @Include(Model.NameOfT+"Excel2007Item",item)
+} 
+
+    &lt;/sheetData&gt;
+&lt;/worksheet&gt;</value>
+  </data>
+  <data name="Excel2007Header" xml:space="preserve">
+    <value>&lt;row&gt;
+@foreach(var item in Model){
+   &lt;c t='inlineStr'&gt;
+                &lt;is&gt;
+                    &lt;t&gt;@item&lt;/t&gt;
+                &lt;/is&gt;
+            &lt;/c&gt;
+} 
+&lt;/row&gt;</value>
+  </data>
+  <data name="Excel2007Item" xml:space="preserve">
+    <value>&lt;row&gt;
+@foreach(var item in Model){
+   &lt;c t='inlineStr'&gt;
+                &lt;is&gt;
+                    &lt;t&gt;@@Model.@item
+                    &lt;/t&gt;
+                &lt;/is&gt;
+    &lt;/c&gt;
+   }
+&lt;/row&gt;</value>
+  </data>
   <data name="HtmlFile" xml:space="preserve">
     <value>&lt;html&gt;
     &lt;head&gt;
@@ -215,7 +252,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
 
  &lt;/Table&gt;
                 
-        Generated on $DateCreated;format="yyyy MMM dd"$
+         &lt;!--Generated on $DateCreated;format="yyyy MMM dd"$--&gt;
     &lt;/body&gt;
 &lt;/html&gt;</value>
   </data>
@@ -275,6 +312,52 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
     &lt;w:p&gt;
         &lt;w:r&gt;
             &lt;w:t&gt;@@Model.@item&lt;/w:t&gt;
+        &lt;/w:r&gt;
+    &lt;/w:p&gt;
+    &lt;/w:tc&gt;
+   }
+&lt;/w:tr&gt;</value>
+  </data>
+  <data name="Word2007File" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"&gt;
+    &lt;w:body&gt;
+        &lt;w:tbl&gt;
+
+@Include(Model.NameOfT+"Word2007Header")
+
+@foreach(var item in Model.Data){
+  @Include(Model.NameOfT+"Word2007Item",item)
+} 
+        &lt;/w:tbl&gt;
+    &lt;/w:body&gt;
+&lt;/w:document&gt;</value>
+  </data>
+  <data name="Word2007Header" xml:space="preserve">
+    <value>&lt;w:tr&gt;
+@foreach(var item in Model){
+                &lt;w:tc&gt;
+                    &lt;w:p&gt;
+                        &lt;w:r&gt;
+                            &lt;w:rPr&gt;
+                                &lt;w:b w:val='on'/&gt;
+                                &lt;w:t&gt;
+                                      @item
+                                &lt;/w:t&gt;
+                            &lt;/w:rPr&gt;
+                        &lt;/w:r&gt;
+                    &lt;/w:p&gt;
+                &lt;/w:tc&gt;
+}
+            &lt;/w:tr&gt;</value>
+  </data>
+  <data name="Word2007Item" xml:space="preserve">
+    <value>&lt;w:tr&gt;
+@foreach(var item in Model){
+   &lt;w:tc&gt;
+    &lt;w:p&gt;
+        &lt;w:r&gt;
+              &lt;w:t&gt;@@Model.@item&lt;/w:t&gt;
         &lt;/w:r&gt;
     &lt;/w:p&gt;
     &lt;/w:tc&gt;
