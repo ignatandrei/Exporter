@@ -57,9 +57,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExportFactory.cs" />
     <Compile Include="ExportPDFiTextSharp4.cs" />
     <Compile Include="ExportExcel2007.cs" />
     <Compile Include="ExportHtml.cs" />
+    <Compile Include="ExportToFormat.cs" />
     <Compile Include="ExportWord2007.cs" />
     <Compile Include="ExportWord.cs" />
     <Compile Include="ExportExcel.cs" />
