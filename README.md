@@ -1,6 +1,8 @@
 # Exporter
 Export to Excel,Word , Pdf, Html,CSV
 
+The data could be a C# class or a JSON string
+
 [![Build status](https://ci.appveyor.com/api/projects/status/w4w6k0kxu2cide0m/branch/master?svg=true)](https://ci.appveyor.com/project/ignatandrei/exporter/branch/master)
 
 
@@ -36,5 +38,21 @@ var p = new Person { Name = "andrei", WebSite = "http://msprogrammer.serviciipew
             Process.Start("b.xlsx");
             
             
+            
+             //export from JSON
+            string dataJson = @"[
+    { 'Name':'Andrei Ignat', 
+        'WebSite':'http://msprogrammer.serviciipeweb.ro/',
+        'CV':'http://serviciipeweb.ro/iafblog/content/binary/cv.doc'        
+    },
+{ 'Name':'Andrei Ignat', 
+        'WebSite':'http://msprogrammer.serviciipeweb.ro/',
+        'CV':'http://serviciipeweb.ro/iafblog/content/binary/cv.doc'        
+    }
+]";
+
+            data= ExportFactory.ExportDataJson(dataJson, ExportToFormat.Excel2007);
+            File.WriteAllBytes("b1.xlsx", data);
+            Process.Start("b1.xlsx");
             
 More details at https://github.com/ignatandrei/Exporter/wiki
