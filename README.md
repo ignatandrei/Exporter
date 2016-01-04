@@ -34,3 +34,7 @@ var p = new Person { Name = "andrei", WebSite = "http://msprogrammer.serviciipew
             data = ExportFactory.ExportData(new List<Person>() {p}, ExportToFormat.Excel2007);
             File.WriteAllBytes("b.xlsx", data);
             Process.Start("b.xlsx");
+            
+            
+            
+More details at http://ignatandrei.github.io/Exporter/
