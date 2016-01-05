@@ -1,11 +1,6 @@
 # Exporter
 Export to Excel,Word , Pdf, Html,CSV
 
-[![Build status](https://ci.appveyor.com/api/projects/status/w4w6k0kxu2cide0m?svg=true)](https://ci.appveyor.com/project/ignatandrei/exporter)
-
-
-
-
 [![Build status](https://ci.appveyor.com/api/projects/status/w4w6k0kxu2cide0m/branch/master?svg=true)](https://ci.appveyor.com/project/ignatandrei/exporter/branch/master)
 
 
@@ -34,3 +29,12 @@ var p = new Person { Name = "andrei", WebSite = "http://msprogrammer.serviciipew
             data = export.ExportResult(new List<Person>() { p });
             File.WriteAllBytes("a.pdf", data);
             Process.Start("a.pdf");
+//using factory
+
+            data = ExportFactory.ExportData(new List<Person>() {p}, ExportToFormat.Excel2007);
+            File.WriteAllBytes("b.xlsx", data);
+            Process.Start("b.xlsx");
+            
+            
+            
+More details at https://github.com/ignatandrei/Exporter/wiki
