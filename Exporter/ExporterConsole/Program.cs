@@ -44,6 +44,22 @@ namespace ExporterConsole
             File.WriteAllBytes("b.xlsx", data);
             Process.Start("b.xlsx");
 
+            //export from JSON
+            string dataJson = @"[
+    { 'Name':'Andrei Ignat', 
+        'WebSite':'http://msprogrammer.serviciipeweb.ro/',
+        'CV':'http://serviciipeweb.ro/iafblog/content/binary/cv.doc'        
+    },
+{ 'Name':'Andrei Ignat', 
+        'WebSite':'http://msprogrammer.serviciipeweb.ro/',
+        'CV':'http://serviciipeweb.ro/iafblog/content/binary/cv.doc'        
+    }
+]";
+
+            data= ExportFactory.ExportDataJson(dataJson, ExportToFormat.Excel2007);
+            File.WriteAllBytes("b1.xlsx", data);
+            Process.Start("b1.xlsx");
+
         }
     }
 }

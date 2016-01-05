@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExporterTests", "ExporterTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExporterConsole", "ExporterConsole\ExporterConsole.csproj", "{49CD05BA-817B-4C41-8C5F-355395BCA723}"
 EndProject
+Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "ExporterNuGet", "ExporterNuGet\ExporterNuGet.nuproj", "{ECEE29E8-915A-43F6-8F3A-D654F6046750}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,9 @@ Global
 		{49CD05BA-817B-4C41-8C5F-355395BCA723}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49CD05BA-817B-4C41-8C5F-355395BCA723}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49CD05BA-817B-4C41-8C5F-355395BCA723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECEE29E8-915A-43F6-8F3A-D654F6046750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECEE29E8-915A-43F6-8F3A-D654F6046750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECEE29E8-915A-43F6-8F3A-D654F6046750}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
