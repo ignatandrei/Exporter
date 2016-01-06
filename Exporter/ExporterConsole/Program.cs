@@ -57,8 +57,20 @@ namespace ExporterConsole
 ]";
 
             data= ExportFactory.ExportDataJson(dataJson, ExportToFormat.Excel2007);
-            File.WriteAllBytes("b1.xlsx", data);
-            Process.Start("b1.xlsx");
+            File.WriteAllBytes("bJson.xlsx", data);
+            Process.Start("bJson.xlsx");
+
+
+            //or from CSV
+            var dataCSV = new List<string>();
+            dataCSV.Add("Name,WebSite,CV");
+            dataCSV.Add("Andrei Ignat,http://msprogrammer.serviciipeweb.ro/,http://serviciipeweb.ro/iafblog/content/binary/cv.doc");
+            dataCSV.Add("Andrei Ignat,http://msprogrammer.serviciipeweb.ro/,http://serviciipeweb.ro/iafblog/content/binary/cv.doc");
+
+            data= ExportFactory.ExportDataCsv(dataCSV.ToArray(), ExportToFormat.Excel2007);
+            File.WriteAllBytes("bCSV.xlsx", data);
+            Process.Start("bCSV.xlsx");
+
 
         }
     }

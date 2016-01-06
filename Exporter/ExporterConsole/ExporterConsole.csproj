@@ -32,22 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DocumentFormat.OpenXml, Version=1.0.1803.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\ExporterWordExcelPDF.1.0.0.0\lib\DocumentFormat.OpenXml.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ExporterObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ExporterWordExcelPDF.1.0.0.0\lib\ExporterObjects.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ExportImplementation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ExporterWordExcelPDF.1.0.0.0\lib\ExportImplementation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="itextsharp, Version=4.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
-      <HintPath>..\packages\ExporterWordExcelPDF.1.0.0.0\lib\itextsharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -77,6 +61,16 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExporterObjects\ExporterObjects.csproj">
+      <Project>{15792ec9-13a5-440f-b7c8-437453750622}</Project>
+      <Name>ExporterObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExportImplementation\ExportImplementation.csproj">
+      <Project>{91231802-990d-4f5f-9dcc-8c43cc97ca58}</Project>
+      <Name>ExportImplementation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

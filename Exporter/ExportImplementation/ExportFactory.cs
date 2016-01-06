@@ -85,22 +85,33 @@ namespace ExportImplementation
             return export.ExportResult(data, additionalData);
         }
 
-        public class ModelRuntimeJson
+        public class ModelRuntime
         {
             public string ClassName { get; set; }
             public string[] Properties { get; set; }
         }
 
-        public static byte[] ExportDataJson(string jsonArray, ExportToFormat exportFormat,
-            params KeyValuePair<string, object>[] additionalData)
+        private static Type FromProperties(string[] props)
         {
-            var jObj = JArray.Parse(jsonArray);
-            var props = jObj[0].Select(it => ((JProperty) it).Name).ToArray();
             var constructor = string.Join(",string ", props);
             var hash = constructor.GetHashCode();
 
-            var mrj = new ModelRuntimeJson();
+            var mrj = new ModelRuntime();
             mrj.ClassName = "Data" + hash;
+            try
+            {
+                var typeExisting= AppDomain.CurrentDomain.GetAssemblies()            
+                    .SelectMany(a => a.GetTypes())
+                    .FirstOrDefault(t => t.FullName.Equals(mrj.ClassName));
+
+                if (typeExisting != null)
+                    return typeExisting;
+
+            }
+            catch (Exception ex)
+            {
+                string s = ex.Message;
+            }
             mrj.Properties = props;
 
             var template = @"
@@ -129,7 +140,7 @@ string fake=null)
  
 }//end class               
 ";
-            var code = Engine.Razor.RunCompile(template, mrj.ClassName, typeof (ModelRuntimeJson), mrj);
+            var code = Engine.Razor.RunCompile(template, mrj.ClassName, typeof(ModelRuntime), mrj);
             var provider = new CSharpCodeProvider();
             var parameters = new CompilerParameters();
             parameters.ReferencedAssemblies.Add("System.dll");
@@ -137,7 +148,7 @@ string fake=null)
             parameters.GenerateInMemory = false;
             // True - exe file generation, false - dll file generation
             parameters.GenerateExecutable = false;
-            
+
             var results = provider.CompileAssemblyFromSource(parameters, code);
             if (results.Errors.HasErrors)
             {
@@ -152,10 +163,21 @@ string fake=null)
             }
             var assembly = results.CompiledAssembly;
 
-            //in order to be found from Razor export
-            Assembly.LoadFile(assembly.Location);
+            
+            
 
             var type = assembly.DefinedTypes.First(t => t.Name == mrj.ClassName);
+            return type;
+        }
+        public static byte[] ExportDataJson(string jsonArray, ExportToFormat exportFormat,
+            params KeyValuePair<string, object>[] additionalData)
+        {
+            var jObj = JArray.Parse(jsonArray);
+            var props = jObj[0].Select(it => ((JProperty) it).Name).ToArray();
+            var type = FromProperties(props);
+            var assembly = type.Assembly;
+            //in order to be found from Razor export
+            Assembly.LoadFile(assembly.Location);
             var listType = typeof(List<>).MakeGenericType(type);
             
             dynamic list = Activator.CreateInstance(listType);
@@ -164,7 +186,36 @@ string fake=null)
                 var item = jObj[i];
                 var propsValue = item.Select(it => ((JProperty)it).Value).Select(it=>it.ToString()).ToList();
                 propsValue.Add("fake");
-                dynamic obj = assembly.CreateInstance(mrj.ClassName, true, BindingFlags.Public | BindingFlags.Instance, null,
+                dynamic obj = assembly.CreateInstance(type.FullName, true, BindingFlags.Public | BindingFlags.Instance, null,
+                    propsValue.ToArray(), null,
+                    null);
+                list.Add(obj);
+
+            }
+            return ExportDataWithType(list as IEnumerable, exportFormat, type, additionalData);
+        }
+
+        public static byte[] ExportDataCsv(string[] csvWithHeader, ExportToFormat exportFormat,
+            params KeyValuePair<string, object>[] additionalData)
+        {
+
+            var props = csvWithHeader[0].Split(new string[] {","}, StringSplitOptions.None);
+            if(props.Contains(""))
+                throw new ArgumentException("header contains empty string");
+            
+            var type = FromProperties(props);
+            var assembly = type.Assembly;
+            //in order to be found from Razor export
+            Assembly.LoadFile(assembly.Location);
+            var listType = typeof(List<>).MakeGenericType(type);
+
+            dynamic list = Activator.CreateInstance(listType);
+            for (int i = 0; i < csvWithHeader.Length; i++)
+            {
+                var item = csvWithHeader[i];
+                var propsValue = item.Split(new string[] {","}, StringSplitOptions.None).ToList();
+                propsValue.Add("fake");
+                dynamic obj = assembly.CreateInstance(type.FullName, true, BindingFlags.Public | BindingFlags.Instance, null,
                     propsValue.ToArray(), null,
                     null);
                 list.Add(obj);
