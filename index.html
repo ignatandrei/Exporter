@@ -35,6 +35,11 @@
 
 <p><a href="https://ci.appveyor.com/project/ignatandrei/exporter/branch/master"><img src="https://ci.appveyor.com/api/projects/status/w4w6k0kxu2cide0m/branch/master?svg=true" alt="Build status"></a></p>
 
+
+
+The data could be a C# class or a JSON string
+
+NuGet package at <a href='https://www.nuget.org/packages/ExporterWordExcelPDF/'>https://www.nuget.org/packages/ExporterWordExcelPDF/</a>
 <p>Usage:</p>
 
 <p>var p = new Person { Name = "andrei", WebSite = "<a href="http://msprogrammer.serviciipeweb.ro/">http://msprogrammer.serviciipeweb.ro/</a>" , CV = "<a href="http://serviciipeweb.ro/iafblog/content/binary/cv.doc">http://serviciipeweb.ro/iafblog/content/binary/cv.doc</a>" };</p>
@@ -67,6 +72,20 @@
 <pre><code>        data = ExportFactory.ExportData(new List&lt;Person&gt;() {p}, ExportToFormat.Excel2007);
         File.WriteAllBytes("b.xlsx", data);
         Process.Start("b.xlsx");
+
+
+//export from JSON
+        string dataJson = @"[
+{ 'Name':'Andrei Ignat', 
+    'WebSite':'http://msprogrammer.serviciipeweb.ro/',
+    'CV':'http://serviciipeweb.ro/iafblog/content/binary/cv.doc'        
+},
+{ 'Name':'Andrei Ignat', 'WebSite':'http://msprogrammer.serviciipeweb.ro/', 'CV':'http://serviciipeweb.ro/iafblog/content/binary/cv.doc'
+} ]";
+
+        data= ExportFactory.ExportDataJson(dataJson, ExportToFormat.Excel2007);
+        File.WriteAllBytes("b1.xlsx", data);
+        Process.Start("b1.xlsx");
 </code></pre>
       </section>
       <footer>
