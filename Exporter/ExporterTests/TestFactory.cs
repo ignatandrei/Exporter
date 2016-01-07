@@ -22,9 +22,9 @@ namespace ExporterTests
         'WebSite':'http://msprogrammer.serviciipeweb.ro/',
         'CV':'http://serviciipeweb.ro/iafblog/content/binary/cv.doc'        
     },
-{ 'Name':'Andrei Ignat', 
-        'WebSite':'http://msprogrammer.serviciipeweb.ro/',
-        'CV':'http://serviciipeweb.ro/iafblog/content/binary/cv.doc'        
+{ 'Name':'Your Name', 
+        'WebSite':'http://your website',
+        'CV':'cv.doc'        
     }
 ]";
                 
