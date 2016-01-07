@@ -210,7 +210,7 @@ string fake=null)
             var listType = typeof(List<>).MakeGenericType(type);
 
             dynamic list = Activator.CreateInstance(listType);
-            for (int i = 0; i < csvWithHeader.Length; i++)
+            for (int i = 1; i < csvWithHeader.Length; i++)
             {
                 var item = csvWithHeader[i];
                 var propsValue = item.Split(new string[] {","}, StringSplitOptions.None).ToList();

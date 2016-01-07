@@ -12,7 +12,14 @@ namespace ExporterWeb
             // Web API configuration and services
 
             // Web API routes
-            config.MapHttpAttributeRoutes();
+            //config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                name: "ExportAPI",
+                routeTemplate: "api/export/{action}/{id}",
+                defaults: new { controller = "Export" }
+            );
+
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -1,11 +1,11 @@
 ﻿namespace ExportImplementation
 {
     public enum ExportToFormat
-    {
+    {        
         /// <summary>
         /// word 2003 xml
         /// </summary>
-        Word2003XML,
+        Word2003XML=0,
         /// <summary>
         /// excel 2003 xml
         /// </summary>

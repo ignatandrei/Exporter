@@ -14,5 +14,12 @@ namespace ExporterWeb.Controllers
 
             return View();
         }
+
+        public ActionResult ExportData()
+        {
+            ViewBag.Title = "Export in Excel/Word/PDF";
+
+            return View();
+        }
     }
 }

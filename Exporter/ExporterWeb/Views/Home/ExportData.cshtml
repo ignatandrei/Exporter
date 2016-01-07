@@ -1,0 +1,100 @@
+﻿@using ExportImplementation
+
+@{
+    ViewBag.Title = "ExportData";
+}
+
+<h2>Export Data in Excel/Word/PDF</h2>
+
+<div class="jumbotron">
+    <h1>Exporter to Word/Excel/PDF from CSV/Classes/JSON</h1>
+    <p class="lead">Modify the data and press export</p>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h2>Export CSV</h2>
+        <textarea id="csv" rows="20" cols="50">
+            Name,WebSite,CV
+            Andrei Ignat,http://msprogrammer.serviciipeweb.ro/,http://serviciipeweb.ro/iafblog/content/binary/cv.doc
+            Your Name,http://yoursite,cv.doc
+        </textarea>
+        <p>
+        <p>
+            <a class="btn btn-default" href="#" onclick="return ExportCSV(@((int)ExportToFormat.Word2007))">Word</a>
+            <a class="btn btn-default" href="#" onclick="return ExportCSV(@((int)ExportToFormat.Excel2007))">Excel</a>
+            <a class="btn btn-default" href="#" onclick="return ExportCSV(@((int)ExportToFormat.PDFiTextSharp4))">PDF</a>
+        </p>
+        
+    </div>
+
+    <div class="col-md-6">
+        <h2>Export JSON</h2>
+        <textarea id="json" rows="20" cols="50">
+            [
+            { 'Name':'Andrei Ignat',
+            'WebSite':'http://msprogrammer.serviciipeweb.ro/',
+            'CV':'http://serviciipeweb.ro/iafblog/content/binary/cv.doc'
+            },
+            { 'Name':'Your name',
+            'WebSite':'http://yoursite',
+            'CV':'cv.doc'
+            }
+            ]
+        </textarea>
+
+        <p><a class="btn btn-default" href="#" onclick="return ExportJson(@((int)ExportToFormat.Word2007));">Word</a>
+        <a class="btn btn-default" href="#" onclick="return ExportJson(@((int)ExportToFormat.Excel2007))">Excel</a>
+        <a class="btn btn-default" href="#" onclick="return ExportJson(@((int)ExportToFormat.PDFiTextSharp4))">PDF</a></p>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        function findExtension(id) {
+            switch (id) {
+                case @((int)ExportToFormat.Excel2007):
+                    return "xlsx";
+                case @((int)ExportToFormat.Word2007):
+                    return "docx";
+                case @((int)ExportToFormat.PDFiTextSharp4):
+                    return "pdf";
+                default:
+                    return "notKnown" + id;
+            }
+        }
+        function Export(urlExport,id, data) {
+            var ext = findExtension(id);
+
+
+            $.ajax({
+                type: "POST",
+                url: urlExport,
+                data: JSON.stringify({ 'data': data }),
+                datatype: "JSON",
+                contentType: "application/json; charset=utf-8"
+            })
+                .done(function(result) {
+                    var urlDownload = '@Url.Content("/api/export/GetFile/")' + result;
+                    urlDownload += "?fileName=andrei&extension="+ext;
+                    window.open(urlDownload);
+                })
+                .fail(function(f) {
+
+                    alert("error:" + f.responseText);
+                });
+        }
+        function ExportJson(id) {
+            var data = $("#json").val();
+            var urlData='@Url.Content("/api/export/ExportFromJSON/")' + id;
+            Export(urlData, id, data);
+            return false;
+        }
+
+        function ExportCSV(id) {
+            var data = $("#csv").val();
+            var urlData='@Url.Content("/api/export/ExportFromCSV/")' + id;
+            Export(urlData, id, data);
+            return false;
+        }
+    </script>
+}
