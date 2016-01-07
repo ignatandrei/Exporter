@@ -1,0 +1,36 @@
+﻿<div class="jumbotron">
+    <h1>Exporter to Word/Excel/PDF from CSV/Classes/JSON</h1>
+    <p class="lead">Exporter is a free framework for exporting to Word/Excel/PDF from CSV/Classes/JSON</p>
+    @*<p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>Create a project, add the NuGet package from <a href='https://www.nuget.org/packages/ExporterWordExcelPDF/' target="_blank">https://www.nuget.org/packages/ExporterWordExcelPDF/</a> 
+        and then use the code
+        <pre><code>
+
+export=new ExportExcel2007<Person>();
+data = export.ExportResult(new List<Person>() { p });
+File.WriteAllBytes("a.xlsx", data);
+Process.Start("a.xlsx");
+
+//or with Factory
+data= ExportFactory.ExportDataJson(dataJson, ExportToFormat.Excel2007);
+File.WriteAllBytes("bJson.xlsx", data);
+Process.Start("bJson.xlsx");
+            </code></pre>
+        </p>
+        <p><a class="btn btn-default" href="ignatandrei.github.io/Exporter">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Code</h2>
+        <p>Exporter is free code - see on GitHub on <a class="btn btn-default" href="http://github.com/ignatandrei/Exporter">http://github.com/ignatandrei/Exporter</a></p>
+        <p><a class="btn btn-default" href="http://github.com/ignatandrei/Exporter">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Try from Web</h2>
+        <p>For your convenience , you can try it from here</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+    </div>
+</div>
