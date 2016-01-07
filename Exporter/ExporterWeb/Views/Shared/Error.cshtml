@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var ex = Server.GetLastError();
+
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -8,6 +12,13 @@
     <hgroup>
         <h1>Error.</h1>
         <h2>An error occurred while processing your request.</h2>
+        @{
+            if (ex != null)
+            {
+                <text>@ex.Message</text>
+                <text>@ex.StackTrace</text>
+    }
+}
     </hgroup>
 </body>
 </html>
