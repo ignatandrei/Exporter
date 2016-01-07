@@ -45,7 +45,8 @@ namespace ExportImplementation
                     exportType = typeof(ExportExcel2007<>).MakeGenericType(type);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(exportFormat), exportFormat, null);
+                    //throw new ArgumentOutOfRangeException(nameof(exportFormat), exportFormat, null);
+                    throw new ArgumentOutOfRangeException("exportFormat", exportFormat, null);
             }
 
             dynamic export = Activator.CreateInstance(exportType);
@@ -80,7 +81,8 @@ namespace ExportImplementation
                     export = new ExportExcel2007<T>();
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(exportFormat), exportFormat, null);
+                    //throw new ArgumentOutOfRangeException(nameof(exportFormat), exportFormat, null);
+                    throw new ArgumentOutOfRangeException("exportFormat", exportFormat, null);
             }
             return export.ExportResult(data, additionalData);
         }
