@@ -3,7 +3,7 @@
 [![Join the chat at https://gitter.im/ignatandrei/Exporter](https://badges.gitter.im/ignatandrei/Exporter.svg)](https://gitter.im/ignatandrei/Exporter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Export to Excel,Word , Pdf, Html,CSV
 
-The data could be a C# class or a JSON string
+The data could be a C# class or a JSON string or a CSV string or a DataTable
 
 NuGet package at https://www.nuget.org/packages/ExporterWordExcelPDF/ 
 
