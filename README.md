@@ -66,3 +66,6 @@ var p = new Person { Name = "andrei", WebSite = "http://msprogrammer.serviciipew
 More details at <https://github.com/ignatandrei/Exporter/wiki>
 
 
+You can also buy me a beer by donating at 
+
+[PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ignatandrei@yahoo.com&item_name=Exporter&item_number=GitHub)
