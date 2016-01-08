@@ -63,7 +63,7 @@
                 contentType: "application/json; charset=utf-8"
             })
                 .done(function(result) {
-                    var urlDownload = 'http://exporter.azurewebsites.net/api/export/GetFile/)' + result;
+                    var urlDownload = 'http://exporter.azurewebsites.net/api/export/GetFile/' + result;
                     urlDownload += "?fileName=andrei&extension="+ext;
                     window.open(urlDownload);
                 })
