@@ -65,7 +65,7 @@
                 .done(function(result) {
                     var urlDownload = 'http://exporter.azurewebsites.net/api/export/GetFile/' + result;
                     urlDownload += "?fileName=andrei&extension="+ext;
-                    window.open(urlDownload);
+                    window.location=urlDownload;
                 })
                 .fail(function(f) {
 
