@@ -12,8 +12,8 @@
         <p>
         <p>
             <a class="btn btn-default" href="#" onclick="return ExportCSV(@((int)ExportToFormat.Word2007))">Word</a>
-            <a class="btn btn-default" href="#" onclick="return ExportCSV(@((int)ExportToFormat.Excel2007))">Excel</a>
-            <a class="btn btn-default" href="#" onclick="return ExportCSV(@((int)ExportToFormat.PDFiTextSharp4))">PDF</a>
+            <a class="btn btn-default" href="#" onclick="return ExportCSV(5))">Excel</a>
+            <a class="btn btn-default" href="#" onclick="return ExportCSV(3))">PDF</a>
         </p>
         
     </div>
@@ -33,19 +33,19 @@
             ]
         </textarea>
 
-        <p><a class="btn btn-default" href="#" onclick="return ExportJson(@((int)ExportToFormat.Word2007));">Word</a>
-        <a class="btn btn-default" href="#" onclick="return ExportJson(@((int)ExportToFormat.Excel2007))">Excel</a>
-        <a class="btn btn-default" href="#" onclick="return ExportJson(@((int)ExportToFormat.PDFiTextSharp4))">PDF</a></p>
+        <p><a class="btn btn-default" href="#" onclick="return ExportJson(4));">Word</a>
+        <a class="btn btn-default" href="#" onclick="return ExportJson(5)">Excel</a>
+        <a class="btn btn-default" href="#" onclick="return ExportJson(3))">PDF</a></p>
     </div>
 </div>
     <script>
         function findExtension(id) {
             switch (id) {
-                case @((int)ExportToFormat.Excel2007):
+                case 5:
                     return "xlsx";
-                case @((int)ExportToFormat.Word2007):
+                case 4:
                     return "docx";
-                case @((int)ExportToFormat.PDFiTextSharp4):
+                case 3:
                     return "pdf";
                 default:
                     return "notKnown" + id;
@@ -63,7 +63,7 @@
                 contentType: "application/json; charset=utf-8"
             })
                 .done(function(result) {
-                    var urlDownload = '@Url.Content("/api/export/GetFile/")' + result;
+                    var urlDownload = 'http://exporter.azurewebsites.net/api/export/GetFile/)' + result;
                     urlDownload += "?fileName=andrei&extension="+ext;
                     window.open(urlDownload);
                 })
@@ -74,14 +74,14 @@
         }
         function ExportJson(id) {
             var data = $("#json").val();
-            var urlData='@Url.Content("/api/export/ExportFromJSON/")' + id;
+            var urlData='http://exporter.azurewebsites.net/api/export/ExportFromJSON/' + id;
             Export(urlData, id, data);
             return false;
         }
 
         function ExportCSV(id) {
             var data = $("#csv").val();
-            var urlData='@Url.Content("/api/export/ExportFromCSV/")' + id;
+            var urlData='http://exporter.azurewebsites.net/api/export/ExportFromCSV/' + id;
             Export(urlData, id, data);
             return false;
         }
