@@ -37,8 +37,22 @@
         <a class="btn btn-default" href="#" onclick="return ExportJson(5);">Excel</a>
         <a class="btn btn-default" href="#" onclick="return ExportJson(3);">PDF</a></p>
     </div>
+    
+    <a class="btn btn-default" href="#" onclick="return ExportJSON();">Export JSON</a></p>
 </div>
     <script>
+        function ExportJSON(){
+         var arr=[];
+         arr.push({ 'Name':'Andrei Ignat','WebSite':'http://msprogrammer.serviciipeweb.ro/','CV':'http://serviciipeweb.ro/iafblog/content/binary/cv.doc'});
+         arr.push({ 'Name':'Your name','WebSite':'http://yoursite','CV':'cv.doc' });
+          var data = JSON.stringify(arr);
+          var id=5;//5=xlsz, 4=docx, 3 = pdf
+            var urlData='http://exporter.azurewebsites.net/api/export/ExportFromJSON/' + id;
+            
+            Export(urlData, id, data);
+            return false;
+         
+        }
         function findExtension(id) {
             switch (id) {
                 case 5:
