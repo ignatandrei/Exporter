@@ -1,0 +1,24 @@
+<row>
+<!-- begin added -->
+   <c t='inlineStr'>
+                <is>
+                    <t>Number</t>
+                </is>
+            </c>
+<!-- end added -->
+   <c t='inlineStr'>
+                <is>
+                    <t>Name</t>
+                </is>
+            </c>
+   <c t='inlineStr'>
+                <is>
+                    <t>WebSite</t>
+                </is>
+            </c>
+   <c t='inlineStr'>
+                <is>
+                    <t>CV</t>
+                </is>
+            </c>
+</row>

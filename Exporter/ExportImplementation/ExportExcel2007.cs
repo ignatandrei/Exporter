@@ -29,6 +29,7 @@ namespace ExportImplementation
 
         public string ExportResultStringPart(List<T> data, params KeyValuePair<string, object>[] additionalData)
         {
+            
             var modelTemplate = new ModelTemplate<T>(data);
             
             var service = Engine.Razor;

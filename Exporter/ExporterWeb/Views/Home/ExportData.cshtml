@@ -11,7 +11,7 @@
     <p class="lead">Modify the data and press export</p>
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <h2>Export CSV</h2>
         <textarea id="csv" rows="20" cols="50">
             Name,WebSite,CV
@@ -27,7 +27,7 @@
         
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
         <h2>Export JSON</h2>
         <textarea id="json" rows="20" cols="50">
             [
@@ -42,9 +42,70 @@
             ]
         </textarea>
 
-        <p><a class="btn btn-default" href="#" onclick="return ExportJson(@((int)ExportToFormat.Word2007));">Word</a>
-        <a class="btn btn-default" href="#" onclick="return ExportJson(@((int)ExportToFormat.Excel2007))">Excel</a>
-        <a class="btn btn-default" href="#" onclick="return ExportJson(@((int)ExportToFormat.PDFiTextSharp4))">PDF</a></p>
+        <p><a class="btn btn-default" href="#" onclick="return ExportJson(@((int) ExportToFormat.Word2007));">Word</a>
+            <a class="btn btn-default" href="#" onclick="return ExportJson(@((int) ExportToFormat.Excel2007))">Excel</a>
+            <a class="btn btn-default" href="#" onclick="return ExportJson(@((int) ExportToFormat.PDFiTextSharp4))">PDF</a>
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Sample code with Javascript</h2>
+
+        <pre>
+        &lt;!-- be sure to include jquery --&gt;
+        &lt;a href="#" onclick="return ExportJSON();"&gt;Export JSON&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;script&gt;
+        function ExportJSON(){
+        //this is your array with data
+        var arr=[];
+        arr.push({ 'Name':'Andrei Ignat','WebSite':'http://msprogrammer.serviciipeweb.ro/','CV':'http://serviciipeweb.ro/iafblog/content/binary/cv.doc'});
+        arr.push({ 'Name':'Your name','WebSite':'http://yoursite','CV':'cv.doc' });
+        //we will stringify
+        var data = JSON.stringify(arr);
+        var id=5;//5=xlsx, 4=docx, 3 = pdf
+        var urlData='http://exporter.azurewebsites.net/api/export/ExportFromJSON/' + id;
+        //and export
+        Export(urlData, id, data);
+        return false;
+        }
+        //extension of the file
+        function findExtension(id) {
+        switch (id) {
+        case 5:
+        return "xlsx";
+        case 4:
+        return "docx";
+        case 3:
+        return "pdf";
+        default:
+        return "notKnown" + id;
+        }
+        }
+        //step 1: POST data, obtain unique id for the export document
+        //step 2: obtain file from the unique id
+        function Export(urlExport,id, data) {
+        var ext = findExtension(id);
+        //step 1 - post data
+        $.ajax({
+        type: "POST",
+        url: urlExport,
+        data: JSON.stringify({ 'data': data }),
+        datatype: "JSON",
+        contentType: "application/json; charset=utf-8"
+        })
+        .done(function(result) {
+        //step 2 - obtain file
+        var urlDownload = 'http://exporter.azurewebsites.net/api/export/GetFile/' + result;
+        urlDownload += "?fileName=andrei&extension="+ext;
+        window.location=urlDownload;
+        })
+        .fail(function(f) {
+        alert("error:" + f.responseText);
+        });
+        }
+        &lt;/script&gt;
+    </pre>
+        More samples at <a href="https://github.com/ignatandrei/Exporter/wiki">https://github.com/ignatandrei/Exporter/wiki</a>
     </div>
 </div>
 @section scripts

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<worksheet xmlns='http://schemas.openxmlformats.org/spreadsheetml/2006/main' xmlns:r='http://schemas.openxmlformats.org/officeDocument/2006/relationships'>
+    <sheetData>
+
+@Include(Model.NameOfT+"Excel2007Header")
+@{
+	//added number 
+	int nrItem=0;
+}
+@foreach(var item in Model.Data){
+   ViewBag.NrItem = ++nrItem;
+   @Include(Model.NameOfT+"Excel2007Item",item);
+} 
+
+    </sheetData>
+</worksheet>

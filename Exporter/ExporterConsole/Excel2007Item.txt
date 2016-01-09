@@ -1,0 +1,28 @@
+<row>
+<!-- begin added -->
+	<c t='inlineStr'>
+                <is>
+                    <t>@ViewBag.NrItem 
+                    </t>
+                </is>
+    </c>
+	<!-- end added -->
+   <c t='inlineStr'>
+                <is>
+                    <t>@Model.Name
+                    </t>
+                </is>
+    </c>
+   <c t='inlineStr'>
+                <is>
+                    <t>@Model.WebSite
+                    </t>
+                </is>
+    </c>
+   <c t='inlineStr'>
+                <is>
+                    <t>@Model.CV
+                    </t>
+                </is>
+    </c>
+</row>
