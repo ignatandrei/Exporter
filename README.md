@@ -10,7 +10,7 @@ NuGet package at https://www.nuget.org/packages/ExporterWordExcelPDF/
 <a href="https://www.nuget.org/packages/ExporterWordExcelPDF/"><img src="https://img.shields.io/nuget/v/ExporterWordExcelPDF.svg"></img></a>
 
 
-Demo at <http://exporter.azurewebsites.net/>
+The source code has tests and a console project for easy testing the package
 
 
 [![Build status](https://ci.appveyor.com/api/projects/status/w4w6k0kxu2cide0m/branch/master?svg=true)](https://ci.appveyor.com/project/ignatandrei/exporter/branch/master)
