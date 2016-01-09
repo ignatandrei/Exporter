@@ -19,6 +19,4 @@ Code examples in C# / JavaScript at <https://github.com/ignatandrei/Exporter/wik
 
 Demo online at <http://exporter.azurewebsites.net/>
 
-You can also buy me a beer by donating at 
-
-[PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ignatandrei@yahoo.com&item_name=Exporter&item_number=GitHub)
+You can contribute tom the project - read <https://github.com/ignatandrei/Exporter/wiki/Help-the-project>
