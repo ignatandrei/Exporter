@@ -14,6 +14,7 @@ namespace ExporterWeb
             // Web API routes
             //config.MapHttpAttributeRoutes();
 
+            config.EnableCors();
             config.Routes.MapHttpRoute(
                 name: "ExportAPI",
                 routeTemplate: "api/export/{action}/{id}",

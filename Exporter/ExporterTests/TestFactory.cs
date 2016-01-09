@@ -46,7 +46,7 @@ namespace ExporterTests
             [TestMethod]
             public void TestCorrectCSV()
             {
-                List<string> data = new List<string>();
+                var data = new List<string>();
                 data.Add("Name,WebSite,CV");
                 data.Add("Andrei Ignat,http://msprogrammer.serviciipeweb.ro/,http://serviciipeweb.ro/iafblog/content/binary/cv.doc");
                 data.Add("Andrei Ignat,http://msprogrammer.serviciipeweb.ro/,http://serviciipeweb.ro/iafblog/content/binary/cv.doc");

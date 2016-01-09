@@ -20,9 +20,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                </ul>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new {area = ""}, null)</li>
+                    <li><a href="~/swagger">API Test (Swagger)</a></li>
+                    <li>@Html.ActionLink("API", "Index", "Help", new {area = ""}, null)</li>
+                    <li><a href="~/Home/ExportData">Demo</a></li>
+</ul>
             </div>
         </div>
     </div>
@@ -30,7 +32,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>Exporter to Word/Excel/PDF from CSV/Classes/JSON</p>
+            <p>Exporter to Word/Excel/PDF from Classes/DataTable/CSV/JSON</p>
             <p>More details at <a href="http://ignatandrei.github.io/Exporter/" target="_blank">http://ignatandrei.github.io/Exporter/</a> </p>
         </footer>
     </div>
