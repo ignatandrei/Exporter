@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
@@ -216,6 +217,39 @@ string fake=null)
             {
                 var item = csvWithHeader[i];
                 var propsValue = item.Split(new string[] {","}, StringSplitOptions.None).ToList();
+                propsValue.Add("fake");
+                dynamic obj = assembly.CreateInstance(type.FullName, true, BindingFlags.Public | BindingFlags.Instance, null,
+                    propsValue.ToArray(), null,
+                    null);
+                list.Add(obj);
+
+            }
+            return ExportDataWithType(list as IEnumerable, exportFormat, type, additionalData);
+        }
+
+
+        public static byte[] ExportDataFromDataTable(DataTable data, ExportToFormat exportFormat,
+            params KeyValuePair<string, object>[] additionalData)
+        {
+            var cols = data.Columns;
+
+            var props = new string[cols.Count];
+            for (int i = 0; i < cols.Count; i++)
+            {
+                props[i] = cols[i].ColumnName;
+            }
+
+            var type = FromProperties(props);
+            var assembly = type.Assembly;
+            //in order to be found from Razor export
+            Assembly.LoadFile(assembly.Location);
+            var listType = typeof(List<>).MakeGenericType(type);
+
+            dynamic list = Activator.CreateInstance(listType);
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                var item = data.Rows[i];
+                var propsValue = item.ItemArray.Select(it => it.ToString()).ToList();
                 propsValue.Add("fake");
                 dynamic obj = assembly.CreateInstance(type.FullName, true, BindingFlags.Public | BindingFlags.Instance, null,
                     propsValue.ToArray(), null,
