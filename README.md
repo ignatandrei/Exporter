@@ -20,3 +20,22 @@ Code examples in C# / JavaScript at <https://github.com/ignatandrei/Exporter/wik
 Demo online at <http://exporter.azurewebsites.net/>
 
 You can contribute tom the project - read <https://github.com/ignatandrei/Exporter/wiki/Help-the-project>
+
+
+PS: Just to make you an idea, this can be the code to export to Excel
+```csharp
+    List<Person> listWithPerson  = ... //obtained from database
+    var export=new ExportExcel2007<Person>();
+    var data = export.ExportResult(listWithPerson);
+    File.WriteAllBytes("a.xlsx", data);
+    Process.Start("a.xlsx");
+```
+(Do not forget 
+```csharp    
+using ExporterObjects;
+using ExportImplementation;  
+```
+)
+
+
+But is better to read the (Wiki)<https://github.com/ignatandrei/Exporter/wiki>
