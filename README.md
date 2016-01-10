@@ -19,7 +19,7 @@ Code examples in C# / JavaScript at <https://github.com/ignatandrei/Exporter/wik
 
 Demo online at <http://exporter.azurewebsites.net/>
 
-You can contribute tom the project - read <https://github.com/ignatandrei/Exporter/wiki/Help-the-project>
+You can contribute to the project - read <https://github.com/ignatandrei/Exporter/wiki/Help-the-project>
 
 
 PS: Just to make you an idea, this can be the code to export to Excel
@@ -38,4 +38,4 @@ using ExportImplementation;
 )
 
 
-But is better to read the (Wiki)<https://github.com/ignatandrei/Exporter/wiki>
+But is better to read the [Wiki]<https://github.com/ignatandrei/Exporter/wiki>
