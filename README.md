@@ -37,7 +37,7 @@ using ExportImplementation;
 ```
 )
 
-You can also watch video tutorials at [YouTube)(https://www.youtube.com/playlist?list=PL4aSKgR4yk4MqsH5M-f1f5YLVG-nwr4FG)
+You can also watch video tutorials at [YouTube](https://www.youtube.com/playlist?list=PL4aSKgR4yk4MqsH5M-f1f5YLVG-nwr4FG)
 
 
 But is better to read the [Wiki](https://github.com/ignatandrei/Exporter/wiki)
