@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -70,6 +71,18 @@ namespace ExporterConsole
             data = ExportFactory.ExportDataCsv(dataCSV.ToArray(), ExportToFormat.Excel2007);
             File.WriteAllBytes("bCSV.xlsx", data);
             Process.Start("bCSV.xlsx");
+
+            var dta = new DataTable("andrei");
+            dta.Columns.Add(new DataColumn("ID", typeof(int)));
+            dta.Columns.Add(new DataColumn("Data", typeof(string)));
+            
+            dta.Rows.Add(1, "test 1 ");
+            dta.Rows.Add(2, "test 2 ");
+            dta.Rows.Add(3, "test 3 ");
+
+            data = ExportFactory.ExportDataFromDataTable(dta, ExportToFormat.Excel2007);
+            File.WriteAllBytes("dta.xlsx",data);
+            Process.Start("a.xlsx");
 
             //advanced - modifying templates - in this case , added Number
             export = new ExportExcel2007<Person>();

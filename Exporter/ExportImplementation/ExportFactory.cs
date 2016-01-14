@@ -4,15 +4,21 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using ExporterObjects;
 using Microsoft.CSharp;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RazorEngine;
 using RazorEngine.Templating;
+using Xamasoft.JsonClassGenerator;
+using Xamasoft.JsonClassGenerator.CodeWriters;
+using Encoding = System.Text.Encoding;
 
 namespace ExportImplementation
 {
@@ -94,16 +100,51 @@ namespace ExportImplementation
             public string[] Properties { get; set; }
         }
 
-        private static Type FromProperties(string[] props)
+        private static string GenerateClassFromJsonArray(string arr)
+        {
+            using (var ms = new MemoryStream())
+            {
+                using (var tw = new StreamWriter(ms))
+                {
+                    var hash =Math.Abs(arr.GetHashCode());
+
+                    var mrj = new ModelRuntime();
+                    mrj.ClassName = "Data" + hash;
+
+                    var gen = new JsonClassGenerator();
+                    gen.Example = arr;
+                    gen.InternalVisibility = false;
+                    gen.CodeWriter = new CSharpCodeWriter();
+                    gen.ExplicitDeserialization = false;
+                    gen.Namespace = null;
+
+                    gen.NoHelperClass = true;
+                    gen.SecondaryNamespace = null;
+                    gen.TargetFolder = null;
+                    gen.UseProperties = true;
+                    gen.MainClass = mrj.ClassName;
+                    gen.UsePascalCase = false;
+                    gen.UseNestedClasses = true;
+                    gen.ApplyObfuscationAttributes = false;
+                    gen.SingleFile = true;
+                    gen.ExamplesInDocumentation = false;
+                    gen.OutputStream = tw;
+                    gen.GenerateClasses();
+
+                }
+                return Encoding.ASCII.GetString(ms.ToArray());
+            }
+        }
+        private static Type GenerateTypeFromProperties(string[] props)
         {
             var constructor = string.Join(",string ", props);
-            var hash = constructor.GetHashCode();
+            var hash =Math.Abs(constructor.GetHashCode());
 
             var mrj = new ModelRuntime();
             mrj.ClassName = "Data" + hash;
             try
             {
-                var typeExisting= AppDomain.CurrentDomain.GetAssemblies()            
+                var typeExisting = AppDomain.CurrentDomain.GetAssemblies()
                     .SelectMany(a => a.GetTypes())
                     .FirstOrDefault(t => t.FullName.Equals(mrj.ClassName));
 
@@ -132,14 +173,10 @@ string fake=null)
     <text>this.@prop = @prop;</text>
     }
 }//end constructor
-
-
 //properties
 @foreach(var prop in Model.Properties){
     <text>public string @prop{get;set;}</text>
     }
-
-
  
 }//end class               
 ";
@@ -147,6 +184,61 @@ string fake=null)
             var provider = new CSharpCodeProvider();
             var parameters = new CompilerParameters();
             parameters.ReferencedAssemblies.Add("System.dll");
+            // True - memory generation, false - external file generation
+            parameters.GenerateInMemory = false;
+            // True - exe file generation, false - dll file generation
+            parameters.GenerateExecutable = false;
+
+            var results = provider.CompileAssemblyFromSource(parameters, code);
+            if (results.Errors.HasErrors)
+            {
+                var sb = new StringBuilder();
+
+                foreach (CompilerError error in results.Errors)
+                {
+                    sb.AppendLine(string.Format("Error ({0}): {1}", error.ErrorNumber, error.ErrorText));
+                }
+
+                throw new InvalidOperationException(sb.ToString());
+            }
+            var assembly = results.CompiledAssembly;
+
+
+
+
+            var type = assembly.DefinedTypes.First(t => t.Name == mrj.ClassName);
+            return type;
+        }
+        private static Type GenerateTypeFromJson(string json)
+        {
+            
+            var hash =Math.Abs(json.GetHashCode());
+
+            var mrj = new ModelRuntime();
+            mrj.ClassName = "Data" + hash;
+            try
+            {
+                var typeExisting = AppDomain.CurrentDomain.GetAssemblies()
+                    .SelectMany(a => a.GetTypes())
+                    .FirstOrDefault(t => t.FullName.Equals(mrj.ClassName));
+
+                if (typeExisting != null)
+                    return typeExisting;
+
+            }
+            catch (Exception ex)
+            {
+                string s = ex.Message;
+            }
+
+
+            
+            
+        var code = GenerateClassFromJsonArray(json);
+            var provider = new CSharpCodeProvider();
+            var parameters = new CompilerParameters();
+            parameters.ReferencedAssemblies.Add("System.dll");
+            parameters.ReferencedAssemblies.Add("Newtonsoft.Json.dll");
             // True - memory generation, false - external file generation
             parameters.GenerateInMemory = false;
             // True - exe file generation, false - dll file generation
@@ -175,9 +267,8 @@ string fake=null)
         public static byte[] ExportDataJson(string jsonArray, ExportToFormat exportFormat,
             params KeyValuePair<string, object>[] additionalData)
         {
-            var jObj = JArray.Parse(jsonArray);
-            var props = jObj[0].Select(it => ((JProperty) it).Name).ToArray();
-            var type = FromProperties(props);
+            var jObj = JArray.Parse(jsonArray);            
+            var type = GenerateTypeFromJson(jsonArray);
             var assembly = type.Assembly;
             //in order to be found from Razor export
             Assembly.LoadFile(assembly.Location);
@@ -187,11 +278,8 @@ string fake=null)
             for (int i=0;i<jObj.Count;i++)
             {
                 var item = jObj[i];
-                var propsValue = item.Select(it => ((JProperty)it).Value).Select(it=>it.ToString()).ToList();
-                propsValue.Add("fake");
-                dynamic obj = assembly.CreateInstance(type.FullName, true, BindingFlags.Public | BindingFlags.Instance, null,
-                    propsValue.ToArray(), null,
-                    null);
+
+                dynamic obj = JsonConvert.DeserializeObject(item.ToString(), type);
                 list.Add(obj);
 
             }
@@ -205,8 +293,8 @@ string fake=null)
             var props = csvWithHeader[0].Split(new string[] {","}, StringSplitOptions.None);
             if(props.Contains(""))
                 throw new ArgumentException("header contains empty string");
-            
-            var type = FromProperties(props);
+
+            var type = GenerateTypeFromProperties(props);
             var assembly = type.Assembly;
             //in order to be found from Razor export
             Assembly.LoadFile(assembly.Location);
@@ -239,7 +327,7 @@ string fake=null)
                 props[i] = cols[i].ColumnName;
             }
 
-            var type = FromProperties(props);
+            var type = GenerateTypeFromProperties(props);
             var assembly = type.Assembly;
             //in order to be found from Razor export
             Assembly.LoadFile(assembly.Location);

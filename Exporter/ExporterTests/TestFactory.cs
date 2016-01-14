@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
 using ExportImplementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 
 namespace ExporterTests
 {
@@ -79,6 +82,21 @@ namespace ExporterTests
                 Assert.IsTrue(Math.Abs(byte1.Length - 1921) < 100,byte1.Length.ToString());
 
 
+            }
+
+            [TestMethod]
+            public async Task TestJsonDownloadWithCSharp()
+            {
+                var url = "https://api.github.com/search/users?q=ignata";
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Add("user-agent", "AA");
+                var json = await client.GetStringAsync(url);
+                var jObj = JObject.Parse(json);
+                var data = ExportFactory.ExportDataJson(jObj["items"].ToString(), ExportToFormat.Excel2007);
+                
+                //File.WriteAllBytes("a.xlsx", data);
+                //Process.Start("a.xlsx");
+                Assert.IsTrue(Math.Abs(data.Length-2525) < 100, data.Length.ToString());
             }
         }
     }
