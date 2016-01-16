@@ -59,7 +59,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="iTextSharp4TestConstructor.cs" />
     <Compile Include="iTextSharp4TestExport.cs" />
     <Compile Include="HtmlTestConstructor.cs" />

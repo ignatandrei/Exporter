@@ -252,7 +252,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
 
  &lt;/Table&gt;
                 
-         &lt;!--Generated on $DateCreated;format="yyyy MMM dd"$--&gt;
+         Generated on @ViewBag.DateCreated
     &lt;/body&gt;
 &lt;/html&gt;</value>
   </data>

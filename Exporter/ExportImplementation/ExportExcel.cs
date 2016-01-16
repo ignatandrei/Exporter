@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Text;
@@ -26,6 +27,9 @@ namespace ExportImplementation
 
         public override byte[] ExportResult(List<T> data, params KeyValuePair<string, object>[] additionalData)
         {
+            
+            
+            
             var modelTemplate = new ModelTemplate<T>(data);
             
             var service = Engine.Razor;
@@ -35,7 +39,7 @@ namespace ExportImplementation
             service.Compile(TType.Name + "Excel2003Collection",typeof(ModelTemplate<T>));
             service.Compile(TType.Name + "Excel2003Header");
             service.Compile(TType.Name + "Excel2003Item",typeof(T));
-            var result = service.Run(TType.Name + "Excel2003Collection", typeof(ModelTemplate<T>), modelTemplate);
+            var result = service.Run(TType.Name + "Excel2003Collection", typeof(ModelTemplate<T>), modelTemplate, additionalData.ToDynamicViewBag());
             
             return System.Text.Encoding.Unicode.GetBytes(result);
 

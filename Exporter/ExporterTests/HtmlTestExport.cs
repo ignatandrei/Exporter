@@ -34,6 +34,20 @@ namespace ExporterTests
                 Assert.IsTrue(str.Contains("http://serviciipeweb.ro/iafblog/content/binary/cv.doc"),"must contain the cv");
 
             }
+            [TestMethod]
+            public void TestViewBag()
+            {
+                //in the HTML export default exists  the following line
+                //Generated on @ViewBag.DateCreated
+                var p = new Person { Name = "Andrei Ignat", WebSite = "http://msprogrammer.serviciipeweb.ro/", CV = "http://serviciipeweb.ro/iafblog/content/binary/cv.doc" };
+                var export = new ExportHtml<Person>();
+                var date = DateTime.UtcNow;
+                var data = export.ExportResult(new List<Person>() { p },new KeyValuePair<string, object>("DateCreated",date));
+                var str = Encoding.Unicode.GetString(data);
+                Assert.IsTrue(str.Contains(date.ToString()));
+
+
+            }
             //[TestMethod]
             public void TestHtml()
             {

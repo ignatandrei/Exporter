@@ -74,6 +74,7 @@
     <Compile Include="ExportExcel.cs" />
     <Compile Include="ModelTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RazorENgineUtils.cs" />
     <Compile Include="Templates.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

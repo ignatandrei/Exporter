@@ -177,7 +177,7 @@ namespace ExportImplementation {
         ///
         /// &lt;/Table&gt;
         ///                
-        ///         &lt;!--Generated on $DateCreated;format=&quot;yyyy MMM dd&quot;$--&gt;
+        ///         Generated on @ViewBag.DateCreated
         ///    &lt;/body&gt;
         ///&lt;/html&gt;.
         /// </summary>

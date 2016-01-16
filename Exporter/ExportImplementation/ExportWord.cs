@@ -36,7 +36,7 @@ namespace ExportImplementation
             service.Compile(TType.Name + "Word2003Collection",typeof(ModelTemplate<T>));
             service.Compile(TType.Name + "Word2003Header");
             service.Compile(TType.Name + "Word2003Item",typeof(T));
-            var result = service.Run(TType.Name + "Word2003Collection", typeof(ModelTemplate<T>), modelTemplate);
+            var result = service.Run(TType.Name + "Word2003Collection", typeof(ModelTemplate<T>), modelTemplate, additionalData.ToDynamicViewBag());
             return System.Text.Encoding.Unicode.GetBytes(result);
 
 

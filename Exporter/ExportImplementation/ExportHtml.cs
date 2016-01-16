@@ -35,7 +35,7 @@ namespace ExportImplementation
             service.Compile(TType.Name + "HtmlCollection",typeof(ModelTemplate<T>));
             service.Compile(TType.Name + "HtmlHeader");
             service.Compile(TType.Name + "HtmlItem",typeof(T));
-            var result = service.Run(TType.Name + "HtmlCollection", typeof(ModelTemplate<T>), modelTemplate);
+            var result = service.Run(TType.Name + "HtmlCollection", typeof(ModelTemplate<T>), modelTemplate, additionalData.ToDynamicViewBag());
             
             return System.Text.Encoding.Unicode.GetBytes(result);
 

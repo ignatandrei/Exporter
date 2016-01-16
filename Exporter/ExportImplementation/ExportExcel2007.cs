@@ -39,7 +39,7 @@ namespace ExportImplementation
             service.Compile(TType.Name + "Excel2007Collection",typeof(ModelTemplate<T>));
             service.Compile(TType.Name + "Excel2007Header");
             service.Compile(TType.Name + "Excel2007Item",typeof(T));
-            var result = service.Run(TType.Name + "Excel2007Collection", typeof(ModelTemplate<T>), modelTemplate);
+            var result = service.Run(TType.Name + "Excel2007Collection", typeof(ModelTemplate<T>), modelTemplate, additionalData.ToDynamicViewBag());
             
             return result;
 
