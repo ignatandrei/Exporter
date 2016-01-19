@@ -43,19 +43,19 @@ namespace ExporterTests
                 Assert.AreEqual(@"<row>
    <c t='inlineStr'>
                 <is>
-                    <t>@Model.Name
+                    <t>@System.Security.SecurityElement.Escape((((object)Model.Name) ?? """").ToString())
                     </t>
                 </is>
     </c>
    <c t='inlineStr'>
                 <is>
-                    <t>@Model.WebSite
+                    <t>@System.Security.SecurityElement.Escape((((object)Model.WebSite) ?? """").ToString())
                     </t>
                 </is>
     </c>
    <c t='inlineStr'>
                 <is>
-                    <t>@Model.CV
+                    <t>@System.Security.SecurityElement.Escape((((object)Model.CV) ?? """").ToString())
                     </t>
                 </is>
     </c>

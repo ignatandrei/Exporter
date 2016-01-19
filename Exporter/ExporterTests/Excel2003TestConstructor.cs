@@ -29,9 +29,9 @@ namespace ExporterTests
                 var t = new Person {Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/"};
                 var export = new ExportExcel2003<Person>();
                 Assert.AreEqual(@"<Row>
-   <Cell><Data ss:Type='String'>@Model.Name</Data></Cell>
-   <Cell><Data ss:Type='String'>@Model.WebSite</Data></Cell>
-   <Cell><Data ss:Type='String'>@Model.CV</Data></Cell>
+   <Cell><Data ss:Type='String'>@System.Security.SecurityElement.Escape((((object)Model.Name) ?? """").ToString())</Data></Cell>
+   <Cell><Data ss:Type='String'>@System.Security.SecurityElement.Escape((((object)Model.WebSite) ?? """").ToString())</Data></Cell>
+   <Cell><Data ss:Type='String'>@System.Security.SecurityElement.Escape((((object)Model.CV) ?? """").ToString())</Data></Cell>
 </Row>", export.ExportItem);
             }
         }

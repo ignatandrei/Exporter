@@ -98,6 +98,20 @@ namespace ExporterTests
                 //Process.Start("a.xlsx");
                 Assert.IsTrue(Math.Abs(data.Length-2525) < 100, data.Length.ToString());
             }
+
+            [TestMethod]
+            public void TestCorrectRSS()
+            {
+                var data=ExportFactory.ExportDataRSS("http://msprogrammer.serviciipeweb.ro/feed/", ExportToFormat.Excel2003XML);
+                var str=Encoding.Unicode.GetString(data);
+
+                //File.WriteAllText("a.xls", str);
+                //Process.Start("a.xls");
+                Assert.IsTrue(str.Contains("msprogrammer.serviciipeweb.ro"), "must contain link to my site");
+
+
+
+            }
         }
     }
 }

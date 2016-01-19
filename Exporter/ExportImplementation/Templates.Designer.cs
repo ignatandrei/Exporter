@@ -94,10 +94,9 @@ namespace ExportImplementation {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;Row&gt;
-        ///@foreach(var item in Model){
-        ///   &lt;Cell&gt;&lt;Data ss:Type=&apos;String&apos;&gt;@@Model.@item&lt;/Data&gt;&lt;/Cell&gt;
-        ///} 
-        ///&lt;/Row&gt;.
+        ///@foreach(var item in Model){	
+        ///   &lt;Cell&gt;&lt;Data ss:Type=&apos;String&apos;&gt;@@System.Security.SecurityElement.Escape((((object)Model.@item) ?? &quot;&quot;).ToString())&lt;/Data&gt;&lt;/Cell&gt;
+        ///}&lt;/Row&gt;.
         /// </summary>
         public static string Excel2003Item {
             get {
@@ -147,7 +146,7 @@ namespace ExportImplementation {
         ///@foreach(var item in Model){
         ///   &lt;c t=&apos;inlineStr&apos;&gt;
         ///                &lt;is&gt;
-        ///                    &lt;t&gt;@@Model.@item
+        ///                    &lt;t&gt;@@System.Security.SecurityElement.Escape((((object)Model.@item) ?? &quot;&quot;).ToString())
         ///                    &lt;/t&gt;
         ///                &lt;/is&gt;
         ///    &lt;/c&gt;
@@ -203,7 +202,7 @@ namespace ExportImplementation {
         /// <summary>
         ///   Looks up a localized string similar to &lt;tr&gt;
         ///@foreach(var item in Model){
-        ///   &lt;td&gt;@@Model.@item&lt;/td&gt;
+        ///   &lt;td&gt;@@System.Security.SecurityElement.Escape((((object)Model.@item) ?? &quot;&quot;).ToString())&lt;/td&gt;
         ///} 
         ///&lt;/tr&gt;.
         /// </summary>
@@ -257,7 +256,7 @@ namespace ExportImplementation {
         /// <summary>
         ///   Looks up a localized string similar to &lt;row&gt;
         ///@foreach(var item in Model){
-        ///    &lt;cell&gt;&lt;phrase font=&apos;Times New Roman&apos; size=&apos;8&apos;&gt;@@Model.@item&lt;/phrase&gt;&lt;/cell&gt;
+        ///    &lt;cell&gt;&lt;phrase font=&apos;Times New Roman&apos; size=&apos;8&apos;&gt;@@System.Security.SecurityElement.Escape((((object)Model.@item) ?? &quot;&quot;).ToString())&lt;/phrase&gt;&lt;/cell&gt;
         ///}
         ///&lt;/row&gt;.
         /// </summary>
@@ -320,7 +319,7 @@ namespace ExportImplementation {
         ///   &lt;w:tc&gt;
         ///    &lt;w:p&gt;
         ///        &lt;w:r&gt;
-        ///            &lt;w:t&gt;@@Model.@item&lt;/w:t&gt;
+        ///            &lt;w:t&gt;@@System.Security.SecurityElement.Escape((((object)Model.@item) ?? &quot;&quot;).ToString())&lt;/w:t&gt;
         ///        &lt;/w:r&gt;
         ///    &lt;/w:p&gt;
         ///    &lt;/w:tc&gt;
@@ -384,7 +383,7 @@ namespace ExportImplementation {
         ///   &lt;w:tc&gt;
         ///    &lt;w:p&gt;
         ///        &lt;w:r&gt;
-        ///              &lt;w:t&gt;@@Model.@item&lt;/w:t&gt;
+        ///              &lt;w:t&gt;@@System.Security.SecurityElement.Escape((((object)Model.@item) ?? &quot;&quot;).ToString())&lt;/w:t&gt;
         ///        &lt;/w:r&gt;
         ///    &lt;/w:p&gt;
         ///    &lt;/w:tc&gt;

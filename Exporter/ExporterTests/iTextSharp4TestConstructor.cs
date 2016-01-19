@@ -29,9 +29,9 @@ namespace ExporterTests
                 var t = new Person {Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/"};
                 var export = new ExportPdfiTextSharp4<Person>();
                 Assert.AreEqual(@"<row>
-    <cell><phrase font='Times New Roman' size='8'>@Model.Name</phrase></cell>
-    <cell><phrase font='Times New Roman' size='8'>@Model.WebSite</phrase></cell>
-    <cell><phrase font='Times New Roman' size='8'>@Model.CV</phrase></cell>
+    <cell><phrase font='Times New Roman' size='8'>@System.Security.SecurityElement.Escape((((object)Model.Name) ?? """").ToString())</phrase></cell>
+    <cell><phrase font='Times New Roman' size='8'>@System.Security.SecurityElement.Escape((((object)Model.WebSite) ?? """").ToString())</phrase></cell>
+    <cell><phrase font='Times New Roman' size='8'>@System.Security.SecurityElement.Escape((((object)Model.CV) ?? """").ToString())</phrase></cell>
 </row>", export.ExportItem);
             }
         }

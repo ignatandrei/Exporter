@@ -7,9 +7,13 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
 using ExporterObjects;
 using Microsoft.CSharp;
 using Newtonsoft.Json;
@@ -346,6 +350,38 @@ string fake=null)
 
             }
             return ExportDataWithType(list as IEnumerable, exportFormat, type, additionalData);
+        }
+
+        public static byte[] ExportDataRSS(string rss, ExportToFormat exportFormat,
+            params KeyValuePair<string, object>[] additionalData)
+        {
+            
+            
+            XDocument rssDoc;
+            if (Uri.IsWellFormedUriString(rss, UriKind.Absolute))
+            {
+                rssDoc = XDocument.Load(rss);
+
+
+            }
+            else
+            {
+                rssDoc = XDocument.Parse(rss);
+            }
+
+            var data =
+                rssDoc.Descendants("item")
+                    .Select(
+                        it =>
+                            new
+                            {
+                                Title = (it.Element("title")?? it.Element("description") ?? new XElement("noData")).Value,
+                                Link = (it.Element("link")??new XElement("noData")).Value,
+                                Description = (it.Element("description") ?? it.Element("title") ?? new XElement("noData")).Value
+                            }).ToArray();
+            var json = JsonConvert.SerializeObject(data);
+            return ExportDataJson(json, exportFormat, additionalData);
+
         }
     }
 }

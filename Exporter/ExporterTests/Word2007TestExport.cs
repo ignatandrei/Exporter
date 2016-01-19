@@ -18,6 +18,7 @@ namespace ExporterTests
             [TestMethod]
             public void TestWithPersonHeader()
             {
+                
                 var p = new Person {Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/"};
                 var export = new ExportWord2007<Person>();
                 var data = export.ExportResultStringPart(new List<Person>() {p});
@@ -37,10 +38,11 @@ namespace ExporterTests
             //[TestMethod]
             public void TestWord2007()
             {
-                var p = new Person { Name = "Andrei Ignat", WebSite = "http://msprogrammer.serviciipeweb.ro/", CV = "http://serviciipeweb.ro/iafblog/content/binary/cv.doc" };
+                
+                
+                var p = new Person { Name = "Andrei Ignat", WebSite = "http://msprogrammer.serviciipeweb.ro/", CV = "http://serviciipeweb.ro/iafblog/content/binary/cv.doc" };                
                 var export = new ExportWord2007<Person>();
-                var data = export.ExportResult(new List<Person>() { p });
-                //var str = Encoding.Unicode.GetString(data);
+                var data = export.ExportResult(new List<Person>() { p });                
                 File.WriteAllBytes("a.docx",data);
                 Process.Start("a.docx");
 

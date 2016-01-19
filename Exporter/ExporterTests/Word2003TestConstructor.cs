@@ -65,21 +65,21 @@ namespace ExporterTests
    <w:tc>
     <w:p>
         <w:r>
-            <w:t>@Model.Name</w:t>
+            <w:t>@System.Security.SecurityElement.Escape((((object)Model.Name) ?? """").ToString())</w:t>
         </w:r>
     </w:p>
     </w:tc>
    <w:tc>
     <w:p>
         <w:r>
-            <w:t>@Model.WebSite</w:t>
+            <w:t>@System.Security.SecurityElement.Escape((((object)Model.WebSite) ?? """").ToString())</w:t>
         </w:r>
     </w:p>
     </w:tc>
    <w:tc>
     <w:p>
         <w:r>
-            <w:t>@Model.CV</w:t>
+            <w:t>@System.Security.SecurityElement.Escape((((object)Model.CV) ?? """").ToString())</w:t>
         </w:r>
     </w:p>
     </w:tc>
