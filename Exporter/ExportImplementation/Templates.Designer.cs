@@ -82,7 +82,7 @@ namespace ExportImplementation {
         /// <summary>
         ///   Looks up a localized string similar to &lt;Row&gt;
         ///@foreach(var item in Model){
-        ///   &lt;Cell ss:StyleID=&apos;s21&apos;&gt;&lt;Data ss:Type=&apos;String&apos;&gt;@item&lt;/Data&gt;&lt;/Cell&gt;
+        ///   &lt;Cell ss:StyleID=&apos;s21&apos;&gt;&lt;Data ss:Type=&apos;String&apos;&gt;@System.Security.SecurityElement.Escape(item)&lt;/Data&gt;&lt;/Cell&gt;
         ///} 
         ///&lt;/Row&gt;.
         /// </summary>
@@ -129,7 +129,7 @@ namespace ExportImplementation {
         ///@foreach(var item in Model){
         ///   &lt;c t=&apos;inlineStr&apos;&gt;
         ///                &lt;is&gt;
-        ///                    &lt;t&gt;@item&lt;/t&gt;
+        ///                    &lt;t&gt;@System.Security.SecurityElement.Escape(item)&lt;/t&gt;
         ///                &lt;/is&gt;
         ///            &lt;/c&gt;
         ///} 
@@ -189,7 +189,7 @@ namespace ExportImplementation {
         /// <summary>
         ///   Looks up a localized string similar to &lt;tr&gt;
         ///@foreach(var item in Model){
-        ///   &lt;th&gt;@item&lt;/th&gt;
+        ///   &lt;th&gt;@System.Security.SecurityElement.Escape(item)&lt;/th&gt;
         ///} 
         ///&lt;/tr&gt;.
         /// </summary>
@@ -243,7 +243,7 @@ namespace ExportImplementation {
         /// <summary>
         ///   Looks up a localized string similar to &lt;row&gt;
         ///@foreach(var item in Model){
-        ///&lt;cell&gt;&lt;phrase font=&apos;Arial&apos; size=&apos;12&apos; style=&apos;bold&apos;&gt;@item&lt;/phrase&gt;&lt;/cell&gt;
+        ///&lt;cell&gt;&lt;phrase font=&apos;Arial&apos; size=&apos;12&apos; style=&apos;bold&apos;&gt;@System.Security.SecurityElement.Escape(item)&lt;/phrase&gt;&lt;/cell&gt;
         ///}
         ///&lt;/row&gt;.
         /// </summary>
@@ -298,7 +298,7 @@ namespace ExportImplementation {
         ///                        &lt;w:rPr&gt;
         ///                            &lt;w:b w:val=&apos;on&apos;/&gt;
         ///                            &lt;w:t&gt;
-        ///                                @item
+        ///                                @System.Security.SecurityElement.Escape(item)
         ///                            &lt;/w:t&gt;
         ///                        &lt;/w:rPr&gt;
         ///                    &lt;/w:r&gt;
@@ -362,14 +362,14 @@ namespace ExportImplementation {
         ///                            &lt;w:rPr&gt;
         ///                                &lt;w:b w:val=&apos;on&apos;/&gt;
         ///                                &lt;w:t&gt;
-        ///                                      @item
+        ///                                      @System.Security.SecurityElement.Escape(item)
         ///                                &lt;/w:t&gt;
         ///                            &lt;/w:rPr&gt;
         ///                        &lt;/w:r&gt;
         ///                    &lt;/w:p&gt;
         ///                &lt;/w:tc&gt;
         ///}
-        ///            &lt;/w:tr&gt;.
+        ///            &lt;/ [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Word2007Header {
             get {
