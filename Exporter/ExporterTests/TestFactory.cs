@@ -108,9 +108,6 @@ namespace ExporterTests
                 //File.WriteAllText("a.xls", str);
                 //Process.Start("a.xls");
                 Assert.IsTrue(str.Contains("msprogrammer.serviciipeweb.ro"), "must contain link to my site");
-
-
-
             }
         }
     }
