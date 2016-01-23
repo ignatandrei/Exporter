@@ -383,5 +383,13 @@ string fake=null)
             return ExportDataJson(json, exportFormat, additionalData);
 
         }
+
+        public static byte[] ExportDataIDataReader(IDataReader dr, ExportToFormat exportFormat,
+            params KeyValuePair<string, object>[] additionalData)
+        {
+            var dt=new DataTable();
+            dt.Load(dr);
+            return ExportDataFromDataTable(dt,exportFormat,additionalData);
+        }
     }
-}
+    }

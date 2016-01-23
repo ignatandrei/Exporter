@@ -109,6 +109,26 @@ namespace ExporterTests
                 //Process.Start("a.xls");
                 Assert.IsTrue(str.Contains("msprogrammer.serviciipeweb.ro"), "must contain link to my site");
             }
+            [TestMethod]
+            public void TestIDataReader()
+            {
+                var table = new DataTable();
+                var idColumn = table.Columns.Add("ID", typeof(int));
+                table.Columns.Add("Name", typeof(string));
+                table.Columns.Add("WebSite", typeof(string));
+
+                table.PrimaryKey = new DataColumn[] { idColumn };
+
+                table.Rows.Add(new object[] { 1, "Andrei Ignat", "http://msprogrammer.serviciipeweb.ro" });
+                table.Rows.Add(new object[] { 2, "Scott Hanselman", "http://www.hanselman.com/blog/" });
+
+                var byteDataTable = ExportFactory.ExportDataFromDataTable(table, ExportToFormat.Excel2003XML);
+                var byteIDataReader = ExportFactory.ExportDataIDataReader(table.CreateDataReader(), ExportToFormat.Excel2003XML);
+                Assert.AreEqual(byteDataTable.Length,byteIDataReader.Length);
+                //var str = Encoding.Unicode.GetString(byteDataTable);
+                //File.WriteAllText("a.xls", str);
+                //Process.Start("a.xls");
+            }
         }
     }
 }
