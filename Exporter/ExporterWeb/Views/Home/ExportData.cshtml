@@ -11,7 +11,7 @@
     <p class="lead">Modify the data and press export</p>
 </div>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <h2>Export CSV</h2>
         <textarea id="csv" rows="20" cols="50">
             Name,WebSite,CV
@@ -20,14 +20,25 @@
         </textarea>
         <p>
         <p>
-            <a class="btn btn-default" href="#" onclick="return ExportCSV(@((int)ExportToFormat.Word2007))">Word</a>
-            <a class="btn btn-default" href="#" onclick="return ExportCSV(@((int)ExportToFormat.Excel2007))">Excel</a>
-            <a class="btn btn-default" href="#" onclick="return ExportCSV(@((int)ExportToFormat.PDFiTextSharp4))">PDF</a>
+            <a class="btn btn-default" href="#" onclick="return ExportCSV(@((int) ExportToFormat.Word2007))">Word</a>
+            <a class="btn btn-default" href="#" onclick="return ExportCSV(@((int) ExportToFormat.Excel2007))">Excel</a>
+            <a class="btn btn-default" href="#" onclick="return ExportCSV(@((int) ExportToFormat.PDFiTextSharp4))">PDF</a>
         </p>
-        
+
+    </div>
+    <div class="col-md-3">
+        <h2>Export RSS</h2>
+        <input id="rss" value="http://msprogrammer.serviciipeweb.ro/feed/"/>
+        <p>
+        <p>
+            <a class="btn btn-default" href="#" onclick="return ExportRSS(@((int)ExportToFormat.Word2007))">Word</a>
+            <a class="btn btn-default" href="#" onclick="return ExportRSS(@((int)ExportToFormat.Excel2007))">Excel</a>
+            <a class="btn btn-default" href="#" onclick="return ExportRSS(@((int)ExportToFormat.PDFiTextSharp4))">PDF</a>
+        </p>
+
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         <h2>Export JSON</h2>
         <textarea id="json" rows="20" cols="50">
             [
@@ -47,7 +58,9 @@
             <a class="btn btn-default" href="#" onclick="return ExportJson(@((int) ExportToFormat.PDFiTextSharp4))">PDF</a>
         </p>
     </div>
-    <div class="col-md-4">
+
+
+    <div class="col-md-3">
         <h2>Sample code with Javascript</h2>
 
         <pre>
@@ -151,9 +164,17 @@
             return false;
         }
 
+
         function ExportCSV(id) {
             var data = $("#csv").val();
             var urlData='@Url.Content("/api/export/ExportFromCSV/")' + id;
+            Export(urlData, id, data);
+            return false;
+        }
+
+        function ExportRSS(id) {
+            var data = $("#rss").val();
+            var urlData='@Url.Content("/api/export/ExportFromRSS/")' + id;
             Export(urlData, id, data);
             return false;
         }

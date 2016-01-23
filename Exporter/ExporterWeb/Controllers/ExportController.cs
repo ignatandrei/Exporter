@@ -47,9 +47,34 @@ namespace ExporterWeb.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.StackTrace);
+                return BadRequest(ex.Message + "=>"+ex.StackTrace);
             }
         }
+
+        /// <summary>
+        /// Export from RSS
+        /// You should post a JSON.stringify({ 'data': path to the rss }) 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dataRSS"></param>
+        /// <returns>a GUID that is necessary to <see cref="GetFile"/> to obtain the file. Must be called in 10 minutes max</returns>
+        [HttpPost]
+        public IHttpActionResult ExportFromRSS([FromUri] ExportToFormat id, [FromBody] ExportData dataRSS)
+        {
+            try
+            {
+                var bytes = ExportFactory.ExportDataRSS(dataRSS.data.Trim(), id);
+                var key = Guid.NewGuid().ToString();
+                MemoryCache.Default.Add(key, bytes, DateTimeOffset.Now.AddMinutes(10));
+                return Ok(key);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message + "=>"+ex.StackTrace);
+            }
+        }
+
+
         /// <summary>
         /// Export from JSON
         /// You should post a JSON.stringify({ 'data': yourArray }) 
@@ -69,7 +94,7 @@ namespace ExporterWeb.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.StackTrace);
+                return BadRequest(ex.Message + "=>"+ex.StackTrace);
             }
         }
 
@@ -94,7 +119,7 @@ namespace ExporterWeb.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.StackTrace);
+                return BadRequest(ex.Message + "=>"+ex.StackTrace);
             }
         }
 

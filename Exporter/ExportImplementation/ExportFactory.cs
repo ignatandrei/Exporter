@@ -242,7 +242,7 @@ string fake=null)
             var provider = new CSharpCodeProvider();
             var parameters = new CompilerParameters();
             parameters.ReferencedAssemblies.Add("System.dll");
-            parameters.ReferencedAssemblies.Add("Newtonsoft.Json.dll");
+            //parameters.ReferencedAssemblies.Add("Newtonsoft.Json.dll");
             // True - memory generation, false - external file generation
             parameters.GenerateInMemory = false;
             // True - exe file generation, false - dll file generation

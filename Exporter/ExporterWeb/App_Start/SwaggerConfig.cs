@@ -35,7 +35,12 @@ namespace ExporterWeb
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "ExporterWeb");
+                        c.SingleApiVersion("v1", "ExporterWeb")
+                            .Description(" Test Exporter into Excel/Word/PDF")
+                            .Contact(it=>it.Email("ignatandrei@yahoo.com").Name("Andrei Ignat").Url("https://github.com/ignatandrei/Exporter"))
+                            ;
+
+
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be
@@ -200,8 +205,8 @@ namespace ExporterWeb
                         // It can be set to "None" (default), "List" (shows operations for each resource),
                         // or "Full" (fully expanded: shows operations and their details).
                         //
-                        //c.DocExpansion(DocExpansion.List);
-
+                        c.DocExpansion(DocExpansion.List);
+                        
                         // Use the CustomAsset option to provide your own version of assets used in the swagger-ui.
                         // It's typically used to instruct Swashbuckle to return your version instead of the default
                         // when a request is made for "index.html". As with all custom content, the file must be included

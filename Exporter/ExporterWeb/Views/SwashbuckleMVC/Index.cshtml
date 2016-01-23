@@ -1,0 +1,12 @@
+﻿@model Tuple<string, string>
+@{
+    ViewBag.Title = "Swashbukle";
+}
+
+<h2>@Model.Item1</h2>
+@Html.Raw(Model.Item2)
+
+@section scripts
+{
+    
+}
