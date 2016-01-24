@@ -108,10 +108,7 @@ namespace ExportImplementation {
         ///   Looks up a localized string similar to &lt;Worksheet ss:Name=&quot;Model.NameOfT&quot;&gt;
         /// &lt;Table  x:FullColumns=&quot;1&quot;
         ///  x:FullRows=&quot;1&quot;&gt;
-        ///
-        ///
         ///@Include(Model.NameOfT+&quot;Excel2003Header&quot;)
-        ///
         ///@foreach(var item in Model.Data){
         ///  @Include(Model.NameOfT+&quot;Excel2003Item&quot;,item)
         ///} 
@@ -124,7 +121,8 @@ namespace ExportImplementation {
         ///   &lt;VerticalResolution&gt;600&lt;/VerticalResolution&gt;
         ///  &lt;/Print&gt;
         ///  &lt;Selected/&gt;
-        ///  &lt;Panes&gt;        /// [rest of string was truncated]&quot;;.
+        ///  &lt;Panes&gt;
+        ///   &lt;P [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Excel2003Sheet {
             get {

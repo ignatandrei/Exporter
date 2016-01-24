@@ -153,7 +153,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
   &lt;Font x:Family="Swiss" ss:Bold="1"/&gt;
  &lt;/Style&gt;
 &lt;/Styles&gt;
-@Include(Model.NameOfT+"Excel2003Sheet",item)
+@Include(Model.NameOfT+"Excel2003Sheet")
 &lt;/Workbook&gt;</value>
   </data>
   <data name="Excel2003Header" xml:space="preserve">
@@ -375,10 +375,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
     <value>&lt;Worksheet ss:Name="Model.NameOfT"&gt;
  &lt;Table  x:FullColumns="1"
   x:FullRows="1"&gt;
-
-
 @Include(Model.NameOfT+"Excel2003Header")
-
 @foreach(var item in Model.Data){
   @Include(Model.NameOfT+"Excel2003Item",item)
 } 

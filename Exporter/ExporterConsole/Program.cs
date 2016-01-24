@@ -53,6 +53,7 @@ namespace ExporterConsole
             return true;
 
         }
+
         static void SeeAllExport()
         {
             var p = new Person { Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/", CV = "http://serviciipeweb.ro/iafblog/content/binary/cv.doc" };
@@ -62,6 +63,13 @@ namespace ExporterConsole
             var data = export.ExportResult(list);
             if(!writeAndStartFile("a.html", data))
                 Console.WriteLine(" !!!!!!!!!!Could not delete a.html");
+
+            //export = new ExportExcel2003<Person>();
+            //data = export.ExportResult(list);
+            //if (!writeAndStartFile("a.xls", data))
+            //    Console.WriteLine(" !!!!!!!!!!Could not delete a.html");
+
+
 
             export = new ExportExcel2007<Person>();
             data = export.ExportResult(list);

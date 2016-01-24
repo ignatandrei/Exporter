@@ -37,7 +37,7 @@ namespace ExportImplementation
             service.AddTemplate(TType.Name + "Excel2003Collection",ExportCollection);
             service.AddTemplate(TType.Name + "Excel2003Header", ExportHeader);
             service.AddTemplate(TType.Name + "Excel2003Item", ExportItem);
-            service.AddTemplate(TType.Name + "Excel2003Sheet", ExportCollection);
+            service.AddTemplate(TType.Name + "Excel2003Sheet", ExportSheet);
             service.Compile(TType.Name + "Excel2003Collection",typeof(ModelTemplate<T>));
             service.Compile(TType.Name + "Excel2003Sheet", typeof(ModelTemplate<T>));
             service.Compile(TType.Name + "Excel2003Header");
