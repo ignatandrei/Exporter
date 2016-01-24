@@ -32,7 +32,7 @@ namespace ExporterTests
    <td>@System.Security.SecurityElement.Escape((((object)Model.Name) ?? """").ToString())</td>
    <td>@System.Security.SecurityElement.Escape((((object)Model.WebSite) ?? """").ToString())</td>
    <td>@System.Security.SecurityElement.Escape((((object)Model.CV) ?? """").ToString())</td>
-</tr>", export.ExportItem);
+</tr>".Replace("\r","").Replace("\n", ""), export.ExportItem.Replace("\r", "").Replace("\n", ""));
             }
         }
     }
