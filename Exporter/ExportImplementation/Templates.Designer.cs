@@ -105,6 +105,34 @@ namespace ExportImplementation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;Worksheet ss:Name=&quot;Model.NameOfT&quot;&gt;
+        /// &lt;Table  x:FullColumns=&quot;1&quot;
+        ///  x:FullRows=&quot;1&quot;&gt;
+        ///
+        ///
+        ///@Include(Model.NameOfT+&quot;Excel2003Header&quot;)
+        ///
+        ///@foreach(var item in Model.Data){
+        ///  @Include(Model.NameOfT+&quot;Excel2003Item&quot;,item)
+        ///} 
+        /// &lt;/Table&gt;
+        /// &lt;WorksheetOptions xmlns=&quot;urn:schemas-microsoft-com:office:excel&quot;&gt;
+        ///  &lt;Print&gt;
+        ///   &lt;ValidPrinterInfo/&gt;
+        ///   &lt;PaperSizeIndex&gt;9&lt;/PaperSizeIndex&gt;
+        ///   &lt;HorizontalResolution&gt;600&lt;/HorizontalResolution&gt;
+        ///   &lt;VerticalResolution&gt;600&lt;/VerticalResolution&gt;
+        ///  &lt;/Print&gt;
+        ///  &lt;Selected/&gt;
+        ///  &lt;Panes&gt;        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Excel2003Sheet {
+            get {
+                return ResourceManager.GetString("Excel2003Sheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos; standalone=&apos;yes&apos; ?&gt;
         ///&lt;worksheet xmlns=&apos;http://schemas.openxmlformats.org/spreadsheetml/2006/main&apos; xmlns:r=&apos;http://schemas.openxmlformats.org/officeDocument/2006/relationships&apos;&gt;
         ///    &lt;sheetData&gt;

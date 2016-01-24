@@ -153,35 +153,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
   &lt;Font x:Family="Swiss" ss:Bold="1"/&gt;
  &lt;/Style&gt;
 &lt;/Styles&gt;
-&lt;Worksheet ss:Name="Sheet1"&gt;
- &lt;Table  x:FullColumns="1"
-  x:FullRows="1"&gt;
-
-
-@Include(Model.NameOfT+"Excel2003Header")
-
-@foreach(var item in Model.Data){
-  @Include(Model.NameOfT+"Excel2003Item",item)
-} 
- &lt;/Table&gt;
- &lt;WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel"&gt;
-  &lt;Print&gt;
-   &lt;ValidPrinterInfo/&gt;
-   &lt;PaperSizeIndex&gt;9&lt;/PaperSizeIndex&gt;
-   &lt;HorizontalResolution&gt;600&lt;/HorizontalResolution&gt;
-   &lt;VerticalResolution&gt;600&lt;/VerticalResolution&gt;
-  &lt;/Print&gt;
-  &lt;Selected/&gt;
-  &lt;Panes&gt;
-   &lt;Pane&gt;
-    &lt;Number&gt;3&lt;/Number&gt;
-    &lt;RangeSelection&gt;R1C1:R1C1&lt;/RangeSelection&gt;
-   &lt;/Pane&gt;
-  &lt;/Panes&gt;
-  &lt;ProtectObjects&gt;False&lt;/ProtectObjects&gt;
-  &lt;ProtectScenarios&gt;False&lt;/ProtectScenarios&gt;
- &lt;/WorksheetOptions&gt;
-&lt;/Worksheet&gt;
+@Include(Model.NameOfT+"Excel2003Sheet",item)
 &lt;/Workbook&gt;</value>
   </data>
   <data name="Excel2003Header" xml:space="preserve">
@@ -398,5 +370,36 @@ xmlns:html="http://www.w3.org/TR/REC-html40"&gt;
     &lt;/w:tc&gt;
    }
 &lt;/w:tr&gt;</value>
+  </data>
+  <data name="Excel2003Sheet" xml:space="preserve">
+    <value>&lt;Worksheet ss:Name="Model.NameOfT"&gt;
+ &lt;Table  x:FullColumns="1"
+  x:FullRows="1"&gt;
+
+
+@Include(Model.NameOfT+"Excel2003Header")
+
+@foreach(var item in Model.Data){
+  @Include(Model.NameOfT+"Excel2003Item",item)
+} 
+ &lt;/Table&gt;
+ &lt;WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel"&gt;
+  &lt;Print&gt;
+   &lt;ValidPrinterInfo/&gt;
+   &lt;PaperSizeIndex&gt;9&lt;/PaperSizeIndex&gt;
+   &lt;HorizontalResolution&gt;600&lt;/HorizontalResolution&gt;
+   &lt;VerticalResolution&gt;600&lt;/VerticalResolution&gt;
+  &lt;/Print&gt;
+  &lt;Selected/&gt;
+  &lt;Panes&gt;
+   &lt;Pane&gt;
+    &lt;Number&gt;3&lt;/Number&gt;
+    &lt;RangeSelection&gt;R1C1:R1C1&lt;/RangeSelection&gt;
+   &lt;/Pane&gt;
+  &lt;/Panes&gt;
+  &lt;ProtectObjects&gt;False&lt;/ProtectObjects&gt;
+  &lt;ProtectScenarios&gt;False&lt;/ProtectScenarios&gt;
+ &lt;/WorksheetOptions&gt;
+&lt;/Worksheet&gt;</value>
   </data>
 </root>
