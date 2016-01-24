@@ -83,7 +83,7 @@ namespace ExporterTests
         </w:r>
     </w:p>
     </w:tc>
-</w:tr>", export.ExportItem);
+</w:tr>".Replace("\r", "").Replace("\n", ""), export.ExportItem.Replace("\r", "").Replace("\n", ""));
             }
         }
     }

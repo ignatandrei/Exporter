@@ -32,7 +32,7 @@ namespace ExporterTests
     <cell><phrase font='Times New Roman' size='8'>@System.Security.SecurityElement.Escape((((object)Model.Name) ?? """").ToString())</phrase></cell>
     <cell><phrase font='Times New Roman' size='8'>@System.Security.SecurityElement.Escape((((object)Model.WebSite) ?? """").ToString())</phrase></cell>
     <cell><phrase font='Times New Roman' size='8'>@System.Security.SecurityElement.Escape((((object)Model.CV) ?? """").ToString())</phrase></cell>
-</row>", export.ExportItem);
+</row>".Replace("\r", "").Replace("\n", ""), export.ExportItem.Replace("\r", "").Replace("\n", ""));
             }
         }
     }

@@ -32,7 +32,7 @@ namespace ExporterTests
    <Cell><Data ss:Type='String'>@System.Security.SecurityElement.Escape((((object)Model.Name) ?? """").ToString())</Data></Cell>
    <Cell><Data ss:Type='String'>@System.Security.SecurityElement.Escape((((object)Model.WebSite) ?? """").ToString())</Data></Cell>
    <Cell><Data ss:Type='String'>@System.Security.SecurityElement.Escape((((object)Model.CV) ?? """").ToString())</Data></Cell>
-</Row>", export.ExportItem);
+</Row>".Replace("\r", "").Replace("\n", ""), export.ExportItem.Replace("\r", "").Replace("\n", ""));
             }
         }
     }

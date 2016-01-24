@@ -59,7 +59,7 @@ namespace ExporterTests
                     </t>
                 </is>
     </c>
-</row>", export.ExportItem);
+</row>".Replace("\r", "").Replace("\n", ""), export.ExportItem.Replace("\r", "").Replace("\n", ""));
             }
         }
     }
