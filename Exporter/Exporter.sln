@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExporterConsole", "Exporter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExporterWeb", "ExporterWeb\ExporterWeb.csproj", "{36D6BB34-F630-4A05-BDAA-7C20FB3BF986}"
 EndProject
-Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "ExporterNuGet", "ExporterNuGet\ExporterNuGet.nuproj", "{ECEE29E8-915A-43F6-8F3A-D654F6046750}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
