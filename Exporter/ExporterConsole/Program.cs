@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -18,6 +19,7 @@ namespace ExporterConsole
             Console.WriteLine("Please choose:");
             Console.WriteLine("1. See all exports");
             Console.WriteLine("2. See advanced - modify template to add number");
+            Console.WriteLine("3. See advanced - export multiple sheets");
             var option = Console.ReadLine();
             switch (option)
             {
@@ -27,11 +29,33 @@ namespace ExporterConsole
                 case "2":
                     Advanced_ModifyTemplates();
                     return;
-                    
+                case "3":
+                    Advanced_MultipleSheets();
+                    return;
             }
             Console.WriteLine("demo finished");
             
            
+
+        }
+
+        private static void Advanced_MultipleSheets()
+        {
+            var p = new Person { Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/", CV = "http://serviciipeweb.ro/iafblog/content/binary/cv.doc" };
+            var p1 = new Person { Name = "you", WebSite = "http://yourwebsite.com/" };
+            var list = new List<Person>() { p, p1 };
+
+            var kvp = new List<Tuple<string, string>>();
+            for (int i = 0; i < 10; i++)
+            {
+                var q = new Tuple<string, string>("This is key " + i, "Value " + i);
+                kvp.Add(q);
+            }
+
+            var export = new ExportExcel2007<Person>();
+            var data = export.ExportMultipleSheets(new IList[] { list, kvp });
+            if (!writeAndStartFile("multiple.xlsx", data))
+                Console.WriteLine(" !!!!!!!!!!Could not delete multiple.xlsx");           
 
         }
 
