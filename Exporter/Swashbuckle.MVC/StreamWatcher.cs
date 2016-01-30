@@ -21,6 +21,8 @@ namespace Swashbuckle.MVC
         /// </summary>
         Stream _stream;
 
+        private readonly Guid _id;
+
         /// <summary>
         /// Current position in the original stream
         /// </summary>
@@ -43,9 +45,11 @@ namespace Swashbuckle.MVC
         /// 
         /// </summary>
         /// <param name="responseStream"></param>
-        public ResponseFilterStream(Stream responseStream)
+        /// <param name="id"></param>
+        public ResponseFilterStream(Stream responseStream, Guid id)
         {
             _stream = responseStream;
+            _id = id;
         }
 
 
@@ -125,7 +129,7 @@ namespace Swashbuckle.MVC
         /// output stream by caching all write operations and delaying final
         /// response output until Flush() is called on the stream.
         /// </summary>
-        public event Func<MemoryStream, MemoryStream> TransformStream;
+        public event Func<Guid ,MemoryStream, MemoryStream> TransformStream;
 
         /// <summary>
         /// Event that can be hooked up to handle Response.Filter
@@ -183,7 +187,7 @@ namespace Swashbuckle.MVC
         protected virtual MemoryStream OnTransformCompleteStream(MemoryStream ms)
         {
             if (TransformStream != null)
-                return TransformStream(ms);
+                return TransformStream(_id,ms);
 
             return ms;
         }
