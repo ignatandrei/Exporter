@@ -14,6 +14,10 @@ using System.Web.Routing;
 
 namespace Swashbuckle.MVC
 {
+    /// <summary>
+    /// Copied and modified after 
+    /// https://weblog.west-wind.com/posts/2009/Nov/13/Capturing-and-Transforming-ASPNET-Output-with-ResponseFilter
+    /// </summary>
     public class SwashbuckleMVCModule:IHttpModule
     {
         class FakeController : ControllerBase { protected override void ExecuteCore() { } }
@@ -99,7 +103,7 @@ namespace Swashbuckle.MVC
             }
 
             return newMS;
-            return ms;
+         
         }
 
         
