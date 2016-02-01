@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -76,6 +77,39 @@ namespace ExporterTests
                 
                 File.WriteAllBytes("multiple.xlsx", data);
                 Process.Start("multiple.xlsx");
+
+            }
+            //[TestMethod]
+            public void TestExcel2007Dataset()
+            {
+                var ds=new DataSet();
+                var table = new DataTable("programmers");
+                var idColumn = table.Columns.Add("ID", typeof(int));
+                table.Columns.Add("Name", typeof(string));
+                table.Columns.Add("WebSite", typeof(string));
+
+                table.PrimaryKey = new DataColumn[] { idColumn };
+
+                table.Rows.Add(new object[] { 1, "Andrei Ignat", "http://msprogrammer.serviciipeweb.ro" });
+                table.Rows.Add(new object[] { 2, "Scott Hanselman", "http://www.hanselman.com/blog/" });
+
+                ds.Tables.Add(table);
+
+                var dta = new DataTable("andrei");
+                dta.Columns.Add(new DataColumn("ID", typeof(int)));
+                dta.Columns.Add(new DataColumn("Data", typeof(string)));
+                dta.Rows.Add(1, "test 1 ");
+                dta.Rows.Add(2, "test 2 ");
+                dta.Rows.Add(3, "test 3 ");
+                ds.Tables.Add(dta);
+                
+
+
+                var export = new ExportExcel2007<Person>();
+                var data=ExportFactory.ExportDataSet(ds, ExportToFormat.Excel2007);
+
+                File.WriteAllBytes("multipleDataSet.xlsx", data);
+                Process.Start("multipleDataSet.xlsx");
 
             }
         }

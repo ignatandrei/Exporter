@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
@@ -65,6 +66,32 @@ namespace ExportImplementation
             return CreateExcel2007(new string[] { TType.Name},new string[] { result});
 
 
+        }
+
+        internal byte[] ExportMultipleSheets(DataSet data, params KeyValuePair<string, object>[] additionalData)
+        {
+            if (data == null)
+                return null;
+            if (data.Tables.Count == 0)
+                return null;
+
+            var result = new string[data.Tables.Count];
+            var names = new string[data.Tables.Count];
+            for (int i = 0; i < data.Tables.Count; i++)
+            {
+                var table = data.Tables[i];
+                if (table == null || table.Rows.Count == 0)
+                    continue;
+                names[i] = table.TableName;
+                if (string.IsNullOrWhiteSpace(names[i]))
+                {
+                    names[i] = "DataTable" + i;
+                }
+                var list = ExportFactory.IEnumerableFromDataTable(table);
+                result[i] = ExportResultStringPartNotGeneric(list, additionalData);
+
+            }
+            return CreateExcel2007(names, result);
         }
 
         public byte[] ExportMultipleSheets(IList[] data, params KeyValuePair<string, object>[] additionalData)

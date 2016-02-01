@@ -20,6 +20,7 @@ namespace ExporterConsole
             Console.WriteLine("1. See all exports");
             Console.WriteLine("2. See advanced - modify template to add number");
             Console.WriteLine("3. See advanced - export multiple sheets");
+
             var option = Console.ReadLine();
             switch (option)
             {
@@ -55,8 +56,38 @@ namespace ExporterConsole
             var export = new ExportExcel2007<Person>();
             var data = export.ExportMultipleSheets(new IList[] { list, kvp });
             if (!writeAndStartFile("multiple.xlsx", data))
-                Console.WriteLine(" !!!!!!!!!!Could not delete multiple.xlsx");           
+                Console.WriteLine(" !!!!!!!!!!Could not delete multiple.xlsx");
 
+
+            //export dataset
+            var ds = new DataSet();
+            var table = new DataTable("programmers");
+            var idColumn = table.Columns.Add("ID", typeof(int));
+            table.Columns.Add("Name", typeof(string));
+            table.Columns.Add("WebSite", typeof(string));
+
+            table.PrimaryKey = new DataColumn[] { idColumn };
+
+            table.Rows.Add(new object[] { 1, "Andrei Ignat", "http://msprogrammer.serviciipeweb.ro" });
+            table.Rows.Add(new object[] { 2, "Scott Hanselman", "http://www.hanselman.com/blog/" });
+
+            ds.Tables.Add(table);
+
+            var dta = new DataTable("andrei");
+            dta.Columns.Add(new DataColumn("ID", typeof(int)));
+            dta.Columns.Add(new DataColumn("Data", typeof(string)));
+            dta.Rows.Add(1, "test 1 ");
+            dta.Rows.Add(2, "test 2 ");
+            dta.Rows.Add(3, "test 3 ");
+            ds.Tables.Add(dta);
+
+
+
+            export = new ExportExcel2007<Person>();
+            data = ExportFactory.ExportDataSet(ds, ExportToFormat.Excel2007);
+            if (!writeAndStartFile("multipleDataSet.xlsx", data))
+                Console.WriteLine(" !!!!!!!!!!Could not delete multipleDataSet.xlsx");
+            
         }
 
         static bool writeAndStartFile(string fileName, byte[] dataBytes)

@@ -28,32 +28,32 @@ namespace ExportImplementation
 {
     public static class ExportFactory
     {
-        public static byte[] ExportDataWithType(IEnumerable data, ExportToFormat exportFormat,Type type,
+        public static byte[] ExportDataWithType(IEnumerable data, ExportToFormat exportFormat, Type type,
             params KeyValuePair<string, object>[] additionalData)
-            
+
         {
-            var exportType = typeof(Export<>).MakeGenericType(type);
+            var exportType = typeof (Export<>).MakeGenericType(type);
 
             switch (exportFormat)
             {
                 case ExportToFormat.Word2003XML:
-                    
-                    exportType = typeof(ExportWord2003<>).MakeGenericType(type);
+
+                    exportType = typeof (ExportWord2003<>).MakeGenericType(type);
                     break;
                 case ExportToFormat.Excel2003XML:
-                    exportType = typeof(ExportExcel2003<>).MakeGenericType(type);                    
+                    exportType = typeof (ExportExcel2003<>).MakeGenericType(type);
                     break;
                 case ExportToFormat.HTML:
-                    exportType = typeof(ExportHtml<>).MakeGenericType(type);
+                    exportType = typeof (ExportHtml<>).MakeGenericType(type);
                     break;
                 case ExportToFormat.PDFiTextSharp4:
-                    exportType = typeof(ExportPdfiTextSharp4<>).MakeGenericType(type);
+                    exportType = typeof (ExportPdfiTextSharp4<>).MakeGenericType(type);
                     break;
                 case ExportToFormat.Word2007:
-                    exportType = typeof(ExportWord2007<>).MakeGenericType(type);
+                    exportType = typeof (ExportWord2007<>).MakeGenericType(type);
                     break;
                 case ExportToFormat.Excel2007:
-                    exportType = typeof(ExportExcel2007<>).MakeGenericType(type);
+                    exportType = typeof (ExportExcel2007<>).MakeGenericType(type);
                     break;
                 default:
                     //throw new ArgumentOutOfRangeException(nameof(exportFormat), exportFormat, null);
@@ -110,7 +110,7 @@ namespace ExportImplementation
             {
                 using (var tw = new StreamWriter(ms))
                 {
-                    var hash =Math.Abs(arr.GetHashCode());
+                    var hash = Math.Abs(arr.GetHashCode());
 
                     var mrj = new ModelRuntime();
                     mrj.ClassName = "Data" + hash;
@@ -139,10 +139,11 @@ namespace ExportImplementation
                 return Encoding.ASCII.GetString(ms.ToArray());
             }
         }
+
         private static Type GenerateTypeFromProperties(string[] props)
         {
             var constructor = string.Join(",string ", props);
-            var hash =Math.Abs(constructor.GetHashCode());
+            var hash = Math.Abs(constructor.GetHashCode());
 
             var mrj = new ModelRuntime();
             mrj.ClassName = "Data" + hash;
@@ -184,7 +185,7 @@ string fake=null)
  
 }//end class               
 ";
-            var code = Engine.Razor.RunCompile(template, mrj.ClassName, typeof(ModelRuntime), mrj);
+            var code = Engine.Razor.RunCompile(template, mrj.ClassName, typeof (ModelRuntime), mrj);
             var provider = new CSharpCodeProvider();
             var parameters = new CompilerParameters();
             parameters.ReferencedAssemblies.Add("System.dll");
@@ -213,10 +214,11 @@ string fake=null)
             var type = assembly.DefinedTypes.First(t => t.Name == mrj.ClassName);
             return type;
         }
+
         private static Type GenerateTypeFromJson(string json)
         {
-            
-            var hash =Math.Abs(json.GetHashCode());
+
+            var hash = Math.Abs(json.GetHashCode());
 
             var mrj = new ModelRuntime();
             mrj.ClassName = "Data" + hash;
@@ -236,9 +238,9 @@ string fake=null)
             }
 
 
-            
-            
-        var code = GenerateClassFromJsonArray(json);
+
+
+            var code = GenerateClassFromJsonArray(json);
             var provider = new CSharpCodeProvider();
             var parameters = new CompilerParameters();
             parameters.ReferencedAssemblies.Add("System.dll");
@@ -262,24 +264,25 @@ string fake=null)
             }
             var assembly = results.CompiledAssembly;
 
-            
-            
+
+
 
             var type = assembly.DefinedTypes.First(t => t.Name == mrj.ClassName);
             return type;
         }
+
         public static byte[] ExportDataJson(string jsonArray, ExportToFormat exportFormat,
             params KeyValuePair<string, object>[] additionalData)
         {
-            var jObj = JArray.Parse(jsonArray);            
+            var jObj = JArray.Parse(jsonArray);
             var type = GenerateTypeFromJson(jsonArray);
             var assembly = type.Assembly;
             //in order to be found from Razor export
             Assembly.LoadFile(assembly.Location);
-            var listType = typeof(List<>).MakeGenericType(type);
-            
+            var listType = typeof (List<>).MakeGenericType(type);
+
             dynamic list = Activator.CreateInstance(listType);
-            for (int i=0;i<jObj.Count;i++)
+            for (int i = 0; i < jObj.Count; i++)
             {
                 var item = jObj[i];
 
@@ -295,14 +298,14 @@ string fake=null)
         {
 
             var props = csvWithHeader[0].Split(new string[] {","}, StringSplitOptions.None);
-            if(props.Contains(""))
+            if (props.Contains(""))
                 throw new ArgumentException("header contains empty string");
 
             var type = GenerateTypeFromProperties(props);
             var assembly = type.Assembly;
             //in order to be found from Razor export
             Assembly.LoadFile(assembly.Location);
-            var listType = typeof(List<>).MakeGenericType(type);
+            var listType = typeof (List<>).MakeGenericType(type);
 
             dynamic list = Activator.CreateInstance(listType);
             for (int i = 1; i < csvWithHeader.Length; i++)
@@ -310,7 +313,8 @@ string fake=null)
                 var item = csvWithHeader[i];
                 var propsValue = item.Split(new string[] {","}, StringSplitOptions.None).ToList();
                 propsValue.Add("fake");
-                dynamic obj = assembly.CreateInstance(type.FullName, true, BindingFlags.Public | BindingFlags.Instance, null,
+                dynamic obj = assembly.CreateInstance(type.FullName, true, BindingFlags.Public | BindingFlags.Instance,
+                    null,
                     propsValue.ToArray(), null,
                     null);
                 list.Add(obj);
@@ -319,9 +323,7 @@ string fake=null)
             return ExportDataWithType(list as IEnumerable, exportFormat, type, additionalData);
         }
 
-
-        public static byte[] ExportDataFromDataTable(DataTable data, ExportToFormat exportFormat,
-            params KeyValuePair<string, object>[] additionalData)
+        static internal IList IEnumerableFromDataTable(DataTable data)
         {
             var cols = data.Columns;
 
@@ -343,20 +345,29 @@ string fake=null)
                 var item = data.Rows[i];
                 var propsValue = item.ItemArray.Select(it => it.ToString()).ToList();
                 propsValue.Add("fake");
-                dynamic obj = assembly.CreateInstance(type.FullName, true, BindingFlags.Public | BindingFlags.Instance, null,
+                dynamic obj = assembly.CreateInstance(type.FullName, true, BindingFlags.Public | BindingFlags.Instance,
+                    null,
                     propsValue.ToArray(), null,
                     null);
                 list.Add(obj);
 
             }
+            return list as IList;
+            
+        }
+        public static byte[] ExportDataFromDataTable(DataTable data, ExportToFormat exportFormat,
+            params KeyValuePair<string, object>[] additionalData)
+        {
+            var list = IEnumerableFromDataTable(data);
+            var type = list[0].GetType();
             return ExportDataWithType(list as IEnumerable, exportFormat, type, additionalData);
         }
 
         public static byte[] ExportDataRSS(string rss, ExportToFormat exportFormat,
             params KeyValuePair<string, object>[] additionalData)
         {
-            
-            
+
+
             XDocument rssDoc;
             if (Uri.IsWellFormedUriString(rss, UriKind.Absolute))
             {
@@ -375,9 +386,11 @@ string fake=null)
                         it =>
                             new
                             {
-                                Title = (it.Element("title")?? it.Element("description") ?? new XElement("noData")).Value,
-                                Link = (it.Element("link")??new XElement("noData")).Value,
-                                Description = (it.Element("description") ?? it.Element("title") ?? new XElement("noData")).Value
+                                Title =
+                                    (it.Element("title") ?? it.Element("description") ?? new XElement("noData")).Value,
+                                Link = (it.Element("link") ?? new XElement("noData")).Value,
+                                Description =
+                                    (it.Element("description") ?? it.Element("title") ?? new XElement("noData")).Value
                             }).ToArray();
             var json = JsonConvert.SerializeObject(data);
             return ExportDataJson(json, exportFormat, additionalData);
@@ -387,9 +400,20 @@ string fake=null)
         public static byte[] ExportDataIDataReader(IDataReader dr, ExportToFormat exportFormat,
             params KeyValuePair<string, object>[] additionalData)
         {
-            var dt=new DataTable();
+            var dt = new DataTable();
             dt.Load(dr);
-            return ExportDataFromDataTable(dt,exportFormat,additionalData);
+            return ExportDataFromDataTable(dt, exportFormat, additionalData);
+        }
+
+        public static byte[] ExportDataSet(DataSet ds, ExportToFormat exportFormat,
+           params KeyValuePair<string, object>[] additionalData)
+        {
+            if(exportFormat != ExportToFormat.Excel2007)
+                throw new ArgumentException("ready just for Excel 2007");
+
+            var export = new ExportExcel2007<Tuple<string>>();
+            return export.ExportMultipleSheets(ds);
+
         }
     }
-    }
+}
