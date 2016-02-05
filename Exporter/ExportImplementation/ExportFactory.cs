@@ -211,7 +211,7 @@ string fake=null)
 
 
 
-            var type = assembly.DefinedTypes.First(t => t.Name == mrj.ClassName);
+            var type = assembly.GetTypes().First(t => t.Name == mrj.ClassName); 
             return type;
         }
 
@@ -267,7 +267,7 @@ string fake=null)
 
 
 
-            var type = assembly.DefinedTypes.First(t => t.Name == mrj.ClassName);
+            var type = assembly.GetTypes().First(t => t.Name == mrj.ClassName);
             return type;
         }
 
