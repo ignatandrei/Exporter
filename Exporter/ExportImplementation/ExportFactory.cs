@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.XPath;
 using ExporterObjects;
 using Microsoft.CSharp;
 using Newtonsoft.Json;
@@ -274,12 +276,19 @@ string fake=null)
         public static byte[] ExportDataJson(string jsonArray, ExportToFormat exportFormat,
             params KeyValuePair<string, object>[] additionalData)
         {
+            var list = FromJson(jsonArray);
+            var type = list[0].GetType();
+            return ExportDataWithType(list , exportFormat, type, additionalData);
+        }
+
+        static IList FromJson(string jsonArray)
+        {
             var jObj = JArray.Parse(jsonArray);
             var type = GenerateTypeFromJson(jsonArray);
             var assembly = type.Assembly;
             //in order to be found from Razor export
             Assembly.LoadFile(assembly.Location);
-            var listType = typeof (List<>).MakeGenericType(type);
+            var listType = typeof(List<>).MakeGenericType(type);
 
             dynamic list = Activator.CreateInstance(listType);
             for (int i = 0; i < jObj.Count; i++)
@@ -290,9 +299,9 @@ string fake=null)
                 list.Add(obj);
 
             }
-            return ExportDataWithType(list as IEnumerable, exportFormat, type, additionalData);
+            return list as IList;
+            
         }
-
         public static byte[] ExportDataCsv(string[] csvWithHeader, ExportToFormat exportFormat,
             params KeyValuePair<string, object>[] additionalData)
         {
@@ -367,7 +376,13 @@ string fake=null)
             params KeyValuePair<string, object>[] additionalData)
         {
 
+            var json = GetDataFromRSS(rss);
+            return ExportDataJson(json, exportFormat, additionalData);
 
+        }
+
+        static string GetDataFromRSS(string rss)
+        {
             XDocument rssDoc;
             if (Uri.IsWellFormedUriString(rss, UriKind.Absolute))
             {
@@ -393,8 +408,7 @@ string fake=null)
                                     (it.Element("description") ?? it.Element("title") ?? new XElement("noData")).Value
                             }).ToArray();
             var json = JsonConvert.SerializeObject(data);
-            return ExportDataJson(json, exportFormat, additionalData);
-
+            return json;
         }
 
         public static byte[] ExportDataIDataReader(IDataReader dr, ExportToFormat exportFormat,
@@ -415,5 +429,40 @@ string fake=null)
             return export.ExportMultipleSheets(ds);
 
         }
+
+        public static byte[] ExportOpmlRSS(string dataOPML, ExportToFormat exportFormat,
+            params KeyValuePair<string, object>[] additionalData)
+        {
+            if (exportFormat != ExportToFormat.Excel2007)
+                throw new ArgumentException("ready just for Excel 2007");
+
+            XDocument rssDoc;
+            if (Uri.IsWellFormedUriString(dataOPML, UriKind.Absolute))
+            {
+                rssDoc = XDocument.Load(dataOPML);
+
+
+            }
+            else
+            {
+                rssDoc = XDocument.Parse(dataOPML);
+            }
+
+            var dataNodes = rssDoc.XPathSelectElements("//outline[@type='rss']").ToArray();
+            var count = dataNodes.Length;
+            var listData = new List<IList>(count);
+            for (int i = 0; i < count;i++)
+            {
+                var rss = dataNodes[i].Attribute("xmlUrl").Value;
+                var jsonArray = ExportFactory.GetDataFromRSS(rss);
+                listData.Add(FromJson(jsonArray));
+            }
+            var export = new ExportExcel2007<Tuple<string>>();
+            var data = export.ExportMultipleSheets(listData.ToArray(),additionalData);
+            return data;
+
+        }
+
+
     }
 }

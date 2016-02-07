@@ -129,6 +129,28 @@ namespace ExporterTests
                 //File.WriteAllText("a.xls", str);
                 //Process.Start("a.xls");
             }
+
+            [TestMethod]
+            public void TestOpmlRSS()
+            {
+                string opml = @"<?xml version='1.0' encoding='utf-8'?>
+<opml version='1.0'>
+	<head>
+		<title>My Blogs</title>
+	</head>
+	<body>
+		<outline text='Programming Blog En' htmlUrl='http://msprogrammer.serviciipeweb.ro/' type='rss' xmlUrl='http://msprogrammer.serviciipeweb.ro/feed/'/>
+		<outline text='Programming Blog RO' htmlUrl='http://serviciipeweb.ro/iafblog/' type='rss' xmlUrl='http://serviciipeweb.ro/iafblog/feed/'/>
+		<outline text='Personal Blog RO' htmlUrl='http://serviciipeweb.ro/propriu/' type='rss' xmlUrl='http://serviciipeweb.ro/propriu/feed'/>
+
+	</body>
+</opml> ";
+
+                var data = ExportFactory.ExportOpmlRSS(opml,ExportToFormat.Excel2007);
+                //File.WriteAllBytes("opml.xlsx",data);
+                //Process.Start("opml.xlsx");
+                Assert.IsTrue(data.Length>1000 );
+            }
         }
     }
 }
