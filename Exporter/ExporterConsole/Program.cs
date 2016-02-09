@@ -144,6 +144,12 @@ namespace ExporterConsole
                 Console.WriteLine(" !!!!!!!!!!Could not delete a.pdf");
 
 
+            export = new ExportODT<Person>();
+            data = export.ExportResult(list);
+            if (!writeAndStartFile("a.odt", data))
+                Console.WriteLine(" !!!!!!!!!!Could not delete a.odt");
+
+
             //or you can use the factory
             data = ExportFactory.ExportData(list, ExportToFormat.Excel2007);
             if(!writeAndStartFile("b.xlsx", data))

@@ -57,6 +57,9 @@ namespace ExportImplementation
                 case ExportToFormat.Excel2007:
                     exportType = typeof (ExportExcel2007<>).MakeGenericType(type);
                     break;
+                case ExportToFormat.ODT:
+                    exportType = typeof(ExportODT<>).MakeGenericType(type);
+                    break;
                 default:
                     //throw new ArgumentOutOfRangeException(nameof(exportFormat), exportFormat, null);
                     throw new ArgumentOutOfRangeException("exportFormat", exportFormat, null);
@@ -92,6 +95,9 @@ namespace ExportImplementation
                     break;
                 case ExportToFormat.Excel2007:
                     export = new ExportExcel2007<T>();
+                    break;
+                case ExportToFormat.ODT:
+                    export = new ExportODT<T>();
                     break;
                 default:
                     //throw new ArgumentOutOfRangeException(nameof(exportFormat), exportFormat, null);

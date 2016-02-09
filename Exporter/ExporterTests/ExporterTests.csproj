@@ -64,9 +64,9 @@
     <Compile Include="HtmlTestConstructor.cs" />
     <Compile Include="HtmlTestExport.cs" />
     <Compile Include="Excel2007TestConstructor.cs" />
+    <Compile Include="ODTTestConstructor.cs" />
     <Compile Include="TestFactory.cs" />
     <Compile Include="Word2007TestConstructor.cs" />
-    <Compile Include="ODTTestConstructor.cs" />
     <Compile Include="Excel2007TestExport.cs" />
     <Compile Include="ODTTestExport.cs" />
     <Compile Include="Word2007TestExport.cs" />

@@ -25,6 +25,10 @@
         /// <summary>
         /// excel 2007
         /// </summary>
-        Excel2007
+        Excel2007,
+        /// <summary>
+        /// Open document text
+        /// </summary>
+        ODT
     }
 }
