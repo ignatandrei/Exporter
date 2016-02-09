@@ -293,6 +293,65 @@ namespace ExportImplementation {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] ODT {
+            get {
+                object obj = ResourceManager.GetObject("ODT", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;
+        ///&lt;office:document-content xmlns:office=&apos;urn:oasis:names:tc:opendocument:xmlns:office:1.0&apos; xmlns:style=&apos;urn:oasis:names:tc:opendocument:xmlns:style:1.0&apos; xmlns:text=&apos;urn:oasis:names:tc:opendocument:xmlns:text:1.0&apos; xmlns:table=&apos;urn:oasis:names:tc:opendocument:xmlns:table:1.0&apos; xmlns:draw=&apos;urn:oasis:names:tc:opendocument:xmlns:drawing:1.0&apos; xmlns:fo=&apos;urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0&apos; xmlns:xlink=&apos;http://www.w3.org/1999/xlink&apos; xmlns:dc=&apos;http://purl.o [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ODTFile {
+            get {
+                return ResourceManager.GetString("ODTFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;table:table-column table:style-name=&apos;Standard&apos;  table:number-columns-repeated=&apos;@Model.Length&apos;/&gt; 
+        ///&lt;table:table-row&gt; 
+        ///@foreach(var item in Model){
+        ///               &lt;table:table-cell table:style-name=&apos;Standard&apos;
+        ///		  office:value-type=&apos;string&apos;&gt;
+        ///
+        ///		  	&lt;text:p&gt;
+        ///                                      @System.Security.SecurityElement.Escape(item)
+        ///                              &lt;/text:p&gt;
+        ///		
+        ///                &lt;/table:table-cell&gt;
+        ///}
+        ///&lt;/table:table-row&gt;.
+        /// </summary>
+        public static string ODTHeader {
+            get {
+                return ResourceManager.GetString("ODTHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;table:table-row&gt; 
+        ///@foreach(var item in Model){
+        ///&lt;table:table-cell table:style-name=&apos;Standard&apos;
+        /// office:value-type=&apos;string&apos;&gt;
+        ///		  	
+        ///&lt;text:p&gt;@@System.Security.SecurityElement.Escape((((object)Model.@item) ?? &quot;&quot;).ToString())&lt;/text:p&gt;
+        ///
+        ///&lt;/table:table-cell&gt;   
+        ///}
+        ///&lt;/table:table-row&gt;.
+        /// </summary>
+        public static string ODTItem {
+            get {
+                return ResourceManager.GetString("ODTItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
         ///&lt;w:wordDocument xmlns:w=&quot;http://schemas.microsoft.com/office/word/2003/wordml&quot; &gt;        
         ///    &lt;w:body&gt;

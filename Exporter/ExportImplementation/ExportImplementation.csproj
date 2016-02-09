@@ -48,6 +48,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
@@ -69,6 +71,7 @@
     <Compile Include="ExportExcel2007.cs" />
     <Compile Include="ExportHtml.cs" />
     <Compile Include="ExportToFormat.cs" />
+    <Compile Include="ExportODT.cs" />
     <Compile Include="ExportWord2007.cs" />
     <Compile Include="ExportWord.cs" />
     <Compile Include="ExportExcel.cs" />
@@ -91,10 +94,12 @@
     <EmbeddedResource Include="Templates.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Templates.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\ODT.zip" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
