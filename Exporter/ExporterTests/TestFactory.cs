@@ -103,7 +103,7 @@ namespace ExporterTests
             public void TestCorrectRSS()
             {
                 var data=ExportFactory.ExportDataRSS("http://msprogrammer.serviciipeweb.ro/feed/", ExportToFormat.Excel2003XML);
-                var str=Encoding.Unicode.GetString(data);
+                var str=Encoding.UTF8.GetString(data);
 
                 //File.WriteAllText("a.xls", str);
                 //Process.Start("a.xls");

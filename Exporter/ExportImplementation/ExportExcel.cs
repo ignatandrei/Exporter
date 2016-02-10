@@ -44,7 +44,7 @@ namespace ExportImplementation
             service.Compile(TType.Name + "Excel2003Item",typeof(T));
             var result = service.Run(TType.Name + "Excel2003Collection", typeof(ModelTemplate<T>), modelTemplate, additionalData.ToDynamicViewBag());
             
-            return System.Text.Encoding.Unicode.GetBytes(result);
+            return System.Text.Encoding.UTF8.GetBytes(result);
 
 
         }

@@ -21,7 +21,7 @@ namespace ExporterTests
                 var p = new Person {Name = "andrei", WebSite = "http://msprogrammer.serviciipeweb.ro/"};
                 var export = new ExportExcel2003<Person>();
                 var data = export.ExportResult(new List<Person>() {p});
-                var str = Encoding.Unicode.GetString(data);
+                var str = Encoding.UTF8.GetString(data);
                 Assert.IsTrue(str.Contains(export.ExportHeader),"must contain the header");
             }
             [TestMethod]
@@ -30,7 +30,7 @@ namespace ExporterTests
                 var p = new Person { Name = "Andrei Ignat", WebSite = "http://msprogrammer.serviciipeweb.ro/", CV = "http://serviciipeweb.ro/iafblog/content/binary/cv.doc" };
                 var export = new ExportExcel2003<Person>();
                 var data = export.ExportResult(new List<Person>() { p});
-                var str = Encoding.Unicode.GetString(data);
+                var str = Encoding.UTF8.GetString(data);
                 Assert.IsTrue(str.Contains("http://serviciipeweb.ro/iafblog/content/binary/cv.doc"),"must contain the cv");
 
             }
