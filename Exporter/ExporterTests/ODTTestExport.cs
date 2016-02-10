@@ -35,7 +35,7 @@ namespace ExporterTests
                 Assert.IsTrue(str.Contains("http://serviciipeweb.ro/iafblog/content/binary/cv.doc"),"must contain the cv");
 
             }
-            [TestMethod]
+            //[TestMethod]
             public void TestODT()
             {
                 
