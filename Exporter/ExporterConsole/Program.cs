@@ -119,17 +119,27 @@ namespace ExporterConsole
             if(!writeAndStartFile("a.html", data))
                 Console.WriteLine(" !!!!!!!!!!Could not delete a.html");
 
-            //export = new ExportExcel2003<Person>();
-            //data = export.ExportResult(list);
-            //if (!writeAndStartFile("a.xls", data))
-            //    Console.WriteLine(" !!!!!!!!!!Could not delete a.html");
+            export = new ExportExcel2003<Person>();
+            data = export.ExportResult(list);            
+            if (!writeAndStartFile("a.xls", data))
+                Console.WriteLine(" !!!!!!!!!!Could not delete a.xls");
 
+            export = new ExportODS<Person>();
+            data = export.ExportResult(list);
+            if (!writeAndStartFile("a.ods", data))
+                Console.WriteLine(" !!!!!!!!!!Could not delete a.ods");
 
 
             export = new ExportExcel2007<Person>();
             data = export.ExportResult(list);
             if(!writeAndStartFile("a.xlsx", data))
                 Console.WriteLine(" !!!!!!!!!!Could not delete a.xlsx");
+
+            export = new ExportWord2003<Person>();
+            data = export.ExportResult(list);
+            if (!writeAndStartFile("a.doc", data))
+                Console.WriteLine(" !!!!!!!!!!Could not delete a.doc");
+
 
 
             export = new ExportWord2007<Person>();

@@ -59,11 +59,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ODSTestExport.cs" />
     <Compile Include="iTextSharp4TestConstructor.cs" />
     <Compile Include="iTextSharp4TestExport.cs" />
     <Compile Include="HtmlTestConstructor.cs" />
     <Compile Include="HtmlTestExport.cs" />
     <Compile Include="Excel2007TestConstructor.cs" />
+    <Compile Include="ODSTestConstructor.cs" />
     <Compile Include="ODTTestConstructor.cs" />
     <Compile Include="TestFactory.cs" />
     <Compile Include="Word2007TestConstructor.cs" />

@@ -66,6 +66,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExportODS.cs" />
     <Compile Include="ExportFactory.cs" />
     <Compile Include="ExportPDFiTextSharp4.cs" />
     <Compile Include="ExportExcel2007.cs" />
@@ -99,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\ods.zip" />
     <None Include="Resources\ODT.zip" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
