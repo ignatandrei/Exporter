@@ -29,6 +29,10 @@
         /// <summary>
         /// Open document text
         /// </summary>
-        ODT
+        ODT,
+        /// <summary>
+        /// Open document spreadsheet
+        /// </summary>
+        ODS
     }
 }

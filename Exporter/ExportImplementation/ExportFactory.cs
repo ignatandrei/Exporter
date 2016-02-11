@@ -60,6 +60,9 @@ namespace ExportImplementation
                 case ExportToFormat.ODT:
                     exportType = typeof(ExportODT<>).MakeGenericType(type);
                     break;
+                case ExportToFormat.ODS:
+                    exportType = typeof(ExportODS<>).MakeGenericType(type);
+                    break;
                 default:
                     //throw new ArgumentOutOfRangeException(nameof(exportFormat), exportFormat, null);
                     throw new ArgumentOutOfRangeException("exportFormat", exportFormat, null);
@@ -98,6 +101,9 @@ namespace ExportImplementation
                     break;
                 case ExportToFormat.ODT:
                     export = new ExportODT<T>();
+                    break;
+                case ExportToFormat.ODS:
+                    export = new ExportODS<T>();
                     break;
                 default:
                     //throw new ArgumentOutOfRangeException(nameof(exportFormat), exportFormat, null);
