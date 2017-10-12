@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/ae855b1d-8e62-4516-b4ce-b22b599bffa3/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/ExporterWeb</ApplicationInsightsResourceId>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -287,10 +288,6 @@
     <ProjectReference Include="..\ExportImplementation\ExportImplementation.csproj">
       <Project>{91231802-990d-4f5f-9dcc-8c43cc97ca58}</Project>
       <Name>ExportImplementation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Swashbuckle.MVC\Swashbuckle.MVC.csproj">
-      <Project>{be914cb5-02cb-4b7a-b265-587d8a1e61d3}</Project>
-      <Name>Swashbuckle.MVC</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

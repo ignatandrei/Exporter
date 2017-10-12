@@ -314,6 +314,32 @@ string fake=null)
             return list as IList;
             
         }
+        public static byte[] ExportDataDictionary(Dictionary<string, object>[] values, ExportToFormat exportFormat,
+            params KeyValuePair<string, object>[] additionalData)
+        {
+            var props = values[0].Keys.ToArray();            
+            var type = GenerateTypeFromProperties(props);
+            var assembly = type.Assembly;
+            //in order to be found from Razor export
+            Assembly.LoadFile(assembly.Location);
+            var listType = typeof(List<>).MakeGenericType(type);
+
+            dynamic list = Activator.CreateInstance(listType);
+            for (int i = 0; i < values.Length; i++)
+            {
+                var item = values[i];
+                var propsValue = item.Values.ToList();
+                propsValue.Add("fake");
+                dynamic obj = assembly.CreateInstance(type.FullName, true, BindingFlags.Public | BindingFlags.Instance,
+                    null,
+                    propsValue.ToArray(), null,
+                    null);
+                list.Add(obj);
+
+            }
+            return ExportDataWithType(list as IEnumerable, exportFormat, type, additionalData);
+
+        }
         public static byte[] ExportDataCsv(string[] csvWithHeader, ExportToFormat exportFormat,
             params KeyValuePair<string, object>[] additionalData)
         {
@@ -329,7 +355,7 @@ string fake=null)
             var listType = typeof (List<>).MakeGenericType(type);
 
             dynamic list = Activator.CreateInstance(listType);
-            for (int i = 1; i < csvWithHeader.Length; i++)
+            for (int i = 0; i < csvWithHeader.Length; i++)
             {
                 var item = csvWithHeader[i];
                 var propsValue = item.Split(new string[] {","}, StringSplitOptions.None).ToList();

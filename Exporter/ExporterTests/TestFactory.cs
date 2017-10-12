@@ -64,6 +64,35 @@ namespace ExporterTests
 
 
             }
+            [TestMethod]
+            public void TestCorrectDictionary()
+            {
+                var data = new Dictionary<string, object>[2];
+
+                data[0] = new Dictionary<string, object>();
+
+                data[0]["Name"] = "yAndrei Ignat";
+                data[0]["WebSite"] = "http://msprogrammer.serviciipeweb.ro/";
+                data[0]["CV"] = "http://serviciipeweb.ro/iafblog/content/binary/cv.doc";
+
+                data[1] = new Dictionary<string, object>();
+                
+                data[1]["Name"] = "xAndrei Ignat";
+                data[1]["WebSite"] = "http://msprogrammer.serviciipeweb.ro/";
+                data[1]["CV"] = "http://serviciipeweb.ro/iafblog/content/binary/cv.doc";
+                
+
+                var p = new Person { Name = "Andrei Ignat", WebSite = "http://msprogrammer.serviciipeweb.ro/", CV = "http://serviciipeweb.ro/iafblog/content/binary/cv.doc" };
+
+                var byte1 = new ExportExcel2007<Person>().ExportResult(new List<Person>() { p, p });
+
+                var byte2 = ExportFactory.ExportDataDictionary(data, ExportToFormat.Excel2007);
+                File.WriteAllBytes("a.xlsx", byte2);
+                Process.Start("a.xlsx");
+                Assert.IsTrue(Math.Abs(byte1.Length - byte2.Length) < 100);
+
+
+            }
 
 
             [TestMethod]
