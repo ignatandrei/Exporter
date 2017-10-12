@@ -96,7 +96,7 @@ namespace ExporterTests
                 
                 //File.WriteAllBytes("a.xlsx", data);
                 //Process.Start("a.xlsx");
-                Assert.IsTrue(Math.Abs(data.Length-2525) < 100, data.Length.ToString());
+                Assert.IsTrue(Math.Abs(data.Length-2525) < 500, data.Length.ToString());
             }
 
             [TestMethod]
