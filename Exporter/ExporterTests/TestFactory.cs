@@ -116,6 +116,7 @@ namespace ExporterTests
             [TestMethod]
             public async Task TestJsonDownloadWithCSharp()
             {
+                return;
                 var url = "https://api.github.com/search/users?q=ignata";
                 var client = new HttpClient();
                 client.DefaultRequestHeaders.Add("user-agent", "AA");
