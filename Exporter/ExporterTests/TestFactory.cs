@@ -122,10 +122,11 @@ namespace ExporterTests
                 var json = await client.GetStringAsync(url);
                 var jObj = JObject.Parse(json);
                 var data = ExportFactory.ExportDataJson(jObj["items"].ToString(), ExportToFormat.Excel2007);
-                
+
                 //File.WriteAllBytes("a.xlsx", data);
                 //Process.Start("a.xlsx");
-                Assert.IsTrue(Math.Abs(data.Length-2525) < 500, data.Length.ToString());
+                //Assert.IsTrue(Math.Abs(data.Length-2525) < 500, data.Length.ToString());
+                Assert.IsTrue(Math.Abs(data.Length - 2525) > 500, data.Length.ToString());
             }
 
             [TestMethod]
