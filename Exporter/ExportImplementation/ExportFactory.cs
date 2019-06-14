@@ -293,7 +293,7 @@ string fake=null)
             return ExportDataWithType(list , exportFormat, type, additionalData);
         }
 
-        static IList FromJson(string jsonArray)
+        public static IList FromJson(string jsonArray)
         {
             var jObj = JArray.Parse(jsonArray);
             var type = GenerateTypeFromJson(jsonArray);
